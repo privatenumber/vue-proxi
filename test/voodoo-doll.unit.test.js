@@ -142,7 +142,7 @@ describe('VoodooDoll', () => {
 			},
 		};
 
-		const wrapper = mount(usage);
+		mount(usage);
 		expect(mounted).toBeCalled();
 		const [$$] = mounted.mock.calls[0];
 		expect($$.attrs.a).toBe('1');
@@ -189,7 +189,7 @@ describe('VoodooDoll', () => {
 			},
 		};
 
-		const wrapper = mount(usage);
+		mount(usage);
 		expect(mounted).toBeCalled();
 		const [$$] = mounted.mock.calls[0];
 		expect($$.attrs.a).toBe('1');
@@ -237,15 +237,13 @@ describe('VoodooDoll', () => {
 			},
 		};
 
-		const wrapper = mount(usage);
+		mount(usage);
 		expect(mounted).toBeCalled();
 		const [vm] = mounted.mock.calls[0];
 		expect(vm.b).toBe(2);
 	});
 
 	test('Reactive props', async () => {
-		const mounted = jest.fn();
-
 		const ChildComp = {
 			mixins: [
 				VoodooMixin(['count']),
@@ -332,13 +330,11 @@ describe('VoodooDoll', () => {
 			},
 		};
 
-		const wrapper = mount(usage);
+		mount(usage);
 		expect(eventHandler).toBeCalled();
 	});
 
 	test('Crossing voodoo-dolls', () => {
-		const eventHandler = jest.fn();
-
 		const Child1 = {
 			mixins: [
 				VoodooMixin(),

@@ -69,8 +69,10 @@ export default (propsDecl = []) => ({
 
 		propsDecl.forEach((propName) => proxyProp(this, propName, this.$$, 'props'));
 
-		for (const ev in this.$$.data.listeners) {
-			this.$on(ev, this.$$.data.listeners[ev]);
+		for (const ev in data.listeners) {
+			if (hasOwn(data.listeners, ev)) {
+				this.$on(ev, data.listeners[ev]);
+			}
 		}
 	},
 });
