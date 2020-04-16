@@ -5,6 +5,9 @@ export const hasOwn = (obj, prop) => hasOwnProperty.call(obj, prop);
 const camelizeRE = /-(\w)/g;
 export const camelize = (str) => str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''));
 
+const hyphenateRE = /\B([A-Z])/g;
+export const hyphenate = (str) => str.replace(hyphenateRE, '-$1').toLowerCase();
+
 // From: https://github.com/vuejs/vue/blob/33e669b22f69a1f9c9147528360fe0bba85534f0/src/core/instance/state.js#L38
 const sharedPropertyDefinition = {
 	enumerable: true,
@@ -28,4 +31,19 @@ export function initVodoo(parent, key) {
 	}
 
 	return parent._provided[key];
+}
+
+export function computeProps(propsDecl, attrs) {
+	const props = {};
+	for (const attr in attrs) {
+		if (hasOwn(attrs, attr)) {
+			const camelized = camelize(attr);
+			const value = attrs[attr];
+			if (propsDecl.includes(camelized)) {
+				props[camelized] = value;
+				delete attrs[attr];
+			}
+		}
+	}
+	return { attrs, props };
 }

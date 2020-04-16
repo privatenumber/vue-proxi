@@ -67,6 +67,42 @@ describe('Error handling - VoodooMixin', () => {
 		expect(warnHandler).not.toBeCalled();
 		expect(wrapper.text()).toBe('Content');
 	});
+
+	test('No target', () => {
+		const warnHandler = jest.fn();
+		Vue.config.warnHandler = warnHandler;
+
+		const ChildComp = {
+			mixins: [VoodooMixin()],
+			template: '<div>ChildComp</div>',
+		};
+
+		const usage = {
+			template: `
+				<voodoo-doll
+					class="static-class"
+					:class="'computed-class'"
+				>
+					<child-comp
+						ref="child"
+						class="child-static-class"
+					/>
+				</voodoo-doll>
+			`,
+			components: {
+				VoodooDoll,
+				ChildComp,
+			},
+			data() {
+				return {
+					ChildComp,
+				};
+			},
+		};
+
+		const wrapper = mount(usage);
+		expect(warnHandler.mock.calls.length).toBe(1);
+	});
 });
 
 describe('VoodooDoll', () => {
@@ -333,6 +369,47 @@ describe('VoodooDoll', () => {
 		mount(usage);
 		expect(eventHandler).toBeCalled();
 	});
+
+	test('Pass down event-handlers to vm', () => {
+		const eventHandler = jest.fn();
+
+		const ChildComp = {
+			mixins: [
+				VoodooMixin(),
+			],
+			template: '<div v-on="$$.listeners">ChildComp</div>',
+		};
+
+		const usage = {
+			template: `
+				<voodoo-doll
+					:target="ChildComp"
+					@click="eventHandler"
+				>
+					<child-comp ref="child" />
+				</voodoo-doll>
+			`,
+			components: {
+				VoodooDoll,
+				ChildComp,
+			},
+			data() {
+				return {
+					ChildComp,
+				};
+			},
+			methods: {
+				eventHandler,
+			},
+		};
+
+		const wrapper = mount(usage, {
+			attachToDocument: true,
+		});
+		wrapper.find({ ref: 'child' }).vm.$el.click();
+		expect(eventHandler).toBeCalled();
+	});
+
 
 	test('Crossing voodoo-dolls', () => {
 		const Child1 = {
