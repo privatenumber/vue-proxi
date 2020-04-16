@@ -1,11 +1,14 @@
 {
-  "name": "vue-voodoo",
+  "name": "vue-voodoo-doll",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c --environment NODE_ENV:production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev-build": "rollup -cw",
+    "dev": "jest --watchAll",
+    "test": "jest",
+    "lint": "eslint --ext js,vue ."
   },
   "repository": {
     "type": "git",

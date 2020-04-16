@@ -6,7 +6,7 @@
 		"import/no-unresolved": [2, {
 			ignore: [
 				"^@",
-				"vue-voodoo"
+				"vue-voodoo-doll"
 			]
 		}]
 	}

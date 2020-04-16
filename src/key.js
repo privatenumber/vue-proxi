@@ -1,1 +1,1 @@
-export default '__voodoo';
+export default '__voodoo-doll';
