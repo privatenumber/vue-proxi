@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/privatenumber/vue-voodoo.git"
+    "url": "git+https://github.com/privatenumber/vue-voodoo-doll.git"
   },
   "author": "Hiroki Osame <hiroki.osame@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/privatenumber/vue-voodoo/issues"
+    "url": "https://github.com/privatenumber/vue-voodoo-doll/issues"
   },
-  "homepage": "https://github.com/privatenumber/vue-voodoo#readme",
+  "homepage": "https://github.com/privatenumber/vue-voodoo-doll#readme",
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.9.5",
