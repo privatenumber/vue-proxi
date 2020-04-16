@@ -155,7 +155,7 @@ describe('VoodooDoll', () => {
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin(['b'])
+				VoodooMixin(['b']),
 			],
 			template: '<div>ChildComp</div>',
 			mounted() {
@@ -203,7 +203,7 @@ describe('VoodooDoll', () => {
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin(['b'])
+				VoodooMixin(['b']),
 			],
 			template: '<div>ChildComp</div>',
 			mounted() {
@@ -248,7 +248,7 @@ describe('VoodooDoll', () => {
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin(['count'])
+				VoodooMixin(['count']),
 			],
 			template: `
 				<div
@@ -301,7 +301,7 @@ describe('VoodooDoll', () => {
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin(['b'])
+				VoodooMixin(['b']),
 			],
 			template: '<div>ChildComp</div>',
 			mounted() {
@@ -341,7 +341,7 @@ describe('VoodooDoll', () => {
 
 		const Child1 = {
 			mixins: [
-				VoodooMixin()
+				VoodooMixin(),
 			],
 			template: `
 			<div v-bind="$$.attrs">
@@ -372,7 +372,7 @@ describe('VoodooDoll', () => {
 
 		const Child2 = {
 			mixins: [
-				VoodooMixin(['someProp'])
+				VoodooMixin(['someProp']),
 			],
 			template: '<div v-bind="$$.attrs">Child {{ someProp }}</div>',
 		};
@@ -428,10 +428,3 @@ describe('VoodooDoll', () => {
 		expect(child2.text()).toBe('Child 100');
 	});
 });
-
-
-/*
-
-Test 
-- reactivity
-*/

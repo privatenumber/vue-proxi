@@ -49,7 +49,7 @@ export default (propsDecl = []) => ({
 			() => {
 				const attrs = {};
 				const props = {};
-				for (let attr in data.attrs) {
+				for (const attr in data.attrs) {
 					if (hasOwn(data.attrs, attr)) {
 						const camelized = camelize(attr);
 						const value = data.attrs[attr];
@@ -67,11 +67,9 @@ export default (propsDecl = []) => ({
 			{ immediate: true },
 		);
 
-		propsDecl.forEach(propName => 
-			proxyProp(this, propName, this.$$, 'props')
-		);
+		propsDecl.forEach((propName) => proxyProp(this, propName, this.$$, 'props'));
 
-		for (let ev in this.$$.data.listeners) {
+		for (const ev in this.$$.data.listeners) {
 			this.$on(ev, this.$$.data.listeners[ev]);
 		}
 	},

@@ -28,7 +28,6 @@ export default {
 				voodoo = initVodoo(parent, key);
 			}
 
-			const { target } = ctx.props;
 			let $$ = voodoo.get(target);
 			if (!$$) {
 				$$ = Vue.observable({});
