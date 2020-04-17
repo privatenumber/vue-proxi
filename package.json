@@ -1,0 +1,41 @@
+{
+  "name": "vue-voodoo-doll",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup -c --environment NODE_ENV:production",
+    "dev-build": "rollup -cw",
+    "dev": "jest --watchAll",
+    "test": "jest",
+    "lint": "eslint --ext js,vue ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/privatenumber/vue-voodoo-doll.git"
+  },
+  "author": "Hiroki Osame <hiroki.osame@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/privatenumber/vue-voodoo-doll/issues"
+  },
+  "homepage": "https://github.com/privatenumber/vue-voodoo-doll#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.9.5",
+    "@vue/test-utils": "^1.0.0-beta.33",
+    "babel-jest": "^25.3.0",
+    "core-js": "^3.6.4",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "husky": "^4.2.3",
+    "jest": "^25.3.0",
+    "rollup": "^2.3.4",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-filesize": "^7.0.0",
+    "rollup-plugin-terser": "^5.3.0",
+    "vue": "^2.6.11",
+    "vue-template-compiler": "^2.6.11"
+  }
+}
