@@ -3,31 +3,35 @@
 <a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/dm/vue-voodoo-doll"></a>
 <a href="https://packagephobia.now.sh/result?p=vue-voodoo-doll"><img src="https://packagephobia.now.sh/badge?p=vue-voodoo-doll"></a>
 
-> Add props & event-handlers on `<voodoo-doll>` to proxy them to a distant child component
+> Add props / event-handlers on `<voodoo-doll>` to proxy them to a distant child component
 
-## :raised_hand: Why?
+## :raising_hand: Why?
 Vue offers [provide/inject](https://vuejs.org/v2/api/#provide-inject) to communicate with a child component that's passed into a slot. This non-reactive, imperative API might suffice for simple cases, but when data needs to flow bi-directionally or be reactive, you start reinventing new ways for components to communicate. This could get messy and pollute your SFC with irrelevant noise.
 
-_VoodooDoll solves this by offering a template API to directly interface with a component outside your SFC! :ghost:_
+_Voodoo Doll solves this by offering a template API to directly interface with a component outside your SFC! :ghost:_
 
-## :rocket: Installation
+
+## :rocket: Install
 ```sh
 npm i vue-voodoo-doll
 ```
 
-## :beginner: Use case [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/p5Lz419s/)
 
-### Adding event listeners to `window`
+## :beginner: Use case [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/p5Lz419s/)
+The following demo shows a parent-demo communicating with each other using Voodoo Doll. Note how the two components only come together at usage.
+
+### Parent
+_RadioGroup.vue_
 ```vue
 <template>
 	<div>
-		<div>
-			Window width: {{ winWidth }}
-		</div>
-
-		<pseudo-window
-			@resize.passive="onResize" <!-- Handle window resize with "passive" option -->
-		/>
+		<voodoo-doll
+			:secret="key"
+			:checkedItems="value"
+			@update="$emit('input', $event)"
+		>
+			<slot />
+		</voodoo-doll>
 	</div>
 </template>
 
@@ -36,127 +40,103 @@ import VoodooDoll from 'vue-voodoo-doll';
 
 export default {
 	components: {
-		VoodooDoll
+		VoodooDoll,
 	},
-	
+
+	props: ['value'],
+
 	data() {
 		return {
-			winWidth: 0
-		}
+			// Same idea as provide/inject
+			// Use a Symbol for security
+			key: 'radios',
+		};
 	},
-
-	methods: {
-		onResize() {
-			this.winWidth = window.innerWidth;
-		}
-	}
 }
 </script>
 ```
 
-### Adding event listeners to `document`
+### Child
+_Radio.vue_
 ```vue
 <template>
-	<div>
-		<pseudo-window
-			document
-			@click="onClick" <!-- Handle document click -->
-		/>
-	</div>
-</template>
-
-<script>
-import VoodooDoll from 'vue-voodoo-doll';
-
-export default {
-	components: {
-		VoodooDoll
-	},
-
-	methods: {
-		onClick() {
-			console.log('Document click!')
-		}
-	}
-}
-</script>
-```
-
-### Adding event listeners and classes to `document.body`
-```vue
-<template>
-	<div>
-		<pseudo-window
-			body
-
-			<!-- Add a class to document.body -->
-			:class="$style.lockScroll"
-
-			<!-- Handle document.body click -->
+	<label>
+		<input
+			type="checkbox"
 			@click="onClick"
-		/>
-	</div>
+			:checked="isChecked"
+		>
+		{{ label }}
+	</label>
 </template>
 
 <script>
-import VoodooDoll from 'vue-voodoo-doll';
+import { VoodooMixin } from 'vue-voodoo-doll';
 
 export default {
-	components: {
-		VoodooDoll
+	mixins: [
+		VoodooMixin({
+			// Same key as parent
+			from: 'radios',
+
+			// Declare props that can be voodoo'd in
+			// Only array supported for now
+			props: ['checkedItems'],
+		})
+	],
+
+	props: {
+		label: String,
+		value: null
+	},
+
+	computed: {
+		isChecked() {
+			return this.checkedItems.includes(this.value);
+		}
 	},
 
 	methods: {
 		onClick() {
-			console.log('Body click!')
+			if (this.isChecked) {
+				this.$emit('update', this.checkedItems.filter(i => i !== this.value));
+			} else {
+				this.$emit('update', [...this.checkedItems, this.value]);
+			}
 		}
 	}
-}
+};
 </script>
-
-<style module>
-.lockScroll {
-	overflow: hidden;
-}
-</style>
 ```
 
-### When you only want one root element
-The VoodooDoll is a functional component that returns exactly what's passed into it. By using it as the root component, its contents will pass-through.
+### Usage
+_App.vue (Usage)_
 ```vue
 <template>
-	<pseudo-window
-		@blur="pause"
-		@focus="resume"
-	>
-		<video>
-			<source
-				src="/media/examples/flower.webm"
-				type="video/webm"
-			>
-		</video>
+	<div>
+		<radio-group v-model="selected">
+			<radio label="Apples" value="apples" />
+			<radio label="Oranges" value="oranges" />
+			<radio label="Bananas" value="bananas" />
+		</radio-group>
+		<div>
+			Selected: {{ selected }}
+		</div>
 	</div>
 </template>
 
 <script>
-import PseudoWindow from 'vue-voodoo-doll';
-
 export default {
-	components: {
-		PseudoWindow
+	data() {
+		return {
+			selected: [],
+		};
 	},
-
-	methods: {
-		resume() {
-			this.$el.play()
-		},
-		pause() {
-			this.$el.pause()
-		}
-	}
-}
+};
 </script>
 ```
 
 ## Related
 - [vue-subslot](https://github.com/privatenumber/vue-subslot) - 💍 Pick 'n choose what you want from a slot passed into your Vue component
+- [vue-pseudo-window](https://github.com/privatenumber/vue-pseudo-window) - 🖼 Declaratively interface window/document in your Vue template
+- [vue-vnode-syringe](https://github.com/privatenumber/vue-vnode-syringe) - 🧬Mutate your vNodes with vNode Syringe 💉
