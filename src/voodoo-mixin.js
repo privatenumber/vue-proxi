@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import { hasOwn, computeProps } from './utils';
 
 const injection = '__voodooInjection';

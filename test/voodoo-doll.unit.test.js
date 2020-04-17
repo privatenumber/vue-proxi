@@ -100,14 +100,14 @@ describe('Error handling - VoodooMixin', () => {
 			},
 		};
 
-		const wrapper = mount(usage);
+		mount(usage);
 		expect(warnHandler.mock.calls.length).toBe(1);
 	});
 });
 
 describe('VoodooDoll', () => {
 	test('Apply classes', () => {
-		const key = Symbol();
+		const key = Symbol('key');
 
 		const ChildComp = {
 			mixins: [VoodooMixin({
@@ -146,7 +146,7 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Apply attributes', () => {
-		const key = Symbol();
+		const key = Symbol('key');
 		const mounted = jest.fn();
 
 		const ChildComp = {
@@ -194,7 +194,7 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Apply props', () => {
-		const key = Symbol();
+		const key = Symbol('key');
 		const mounted = jest.fn();
 
 		const ChildComp = {
@@ -246,7 +246,7 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Proxy props to vm', () => {
-		const key = Symbol();
+		const key = Symbol('key');
 		const mounted = jest.fn();
 
 		const ChildComp = {
@@ -295,7 +295,7 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Reactive props', async () => {
-		const key = Symbol();
+		const key = Symbol('key');
 		const ChildComp = {
 			mixins: [
 				VoodooMixin({
@@ -350,7 +350,7 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Bind event-handlers to vm', () => {
-		const key = Symbol();
+		const key = Symbol('key');
 		const eventHandler = jest.fn();
 
 		const ChildComp = {
@@ -394,7 +394,7 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Pass down event-handlers to vm', () => {
-		const key = Symbol();
+		const key = Symbol('key');
 		const eventHandler = jest.fn();
 
 		const ChildComp = {
@@ -438,7 +438,7 @@ describe('VoodooDoll', () => {
 
 
 	test('Crossing voodoo-dolls', () => {
-		const key1 = Symbol();
+		const key1 = Symbol('key');
 
 		const Child1 = {
 			mixins: [
@@ -473,7 +473,7 @@ describe('VoodooDoll', () => {
 			},
 		};
 
-		const key2 = Symbol();
+		const key2 = Symbol('key');
 
 		const Child2 = {
 			mixins: [
