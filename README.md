@@ -53,8 +53,7 @@ export default {
 </script>
 ```
 
-### Parent
-_RadioGroup.vue_
+### Parent: _RadioGroup.vue_
 ```vue
 <template>
 	<div>
@@ -89,8 +88,7 @@ export default {
 </script>
 ```
 
-### Child
-_Radio.vue_
+### Child: _Radio.vue_
 ```vue
 <template>
 	<label>
