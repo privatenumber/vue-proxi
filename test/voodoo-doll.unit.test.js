@@ -3,7 +3,7 @@ import { mount } from '@vue/test-utils';
 import VoodooDoll, { VoodooMixin } from 'vue-voodoo-doll';
 
 describe('Error handling - VoodooDoll', () => {
-	test('No target - empty', () => {
+	test('No key - empty', () => {
 		const warnHandler = jest.fn();
 		Vue.config.warnHandler = warnHandler;
 
@@ -23,7 +23,7 @@ describe('Error handling - VoodooDoll', () => {
 		expect(wrapper.isEmpty()).toBe(true);
 	});
 
-	test('No target - content', () => {
+	test('No key - content', () => {
 		const warnHandler = jest.fn();
 		Vue.config.warnHandler = warnHandler;
 
@@ -68,7 +68,7 @@ describe('Error handling - VoodooMixin', () => {
 		expect(wrapper.text()).toBe('Content');
 	});
 
-	test('No target', () => {
+	test('No key', () => {
 		const warnHandler = jest.fn();
 		Vue.config.warnHandler = warnHandler;
 
@@ -107,15 +107,19 @@ describe('Error handling - VoodooMixin', () => {
 
 describe('VoodooDoll', () => {
 	test('Apply classes', () => {
+		const key = Symbol();
+
 		const ChildComp = {
-			mixins: [VoodooMixin()],
+			mixins: [VoodooMixin({
+				from: key,
+			})],
 			template: '<div :class="$$.class">ChildComp</div>',
 		};
 
 		const usage = {
 			template: `
 				<voodoo-doll
-					:target="ChildComp"
+					:secret="key"
 					class="static-class"
 					:class="'computed-class'"
 				>
@@ -131,7 +135,7 @@ describe('VoodooDoll', () => {
 			},
 			data() {
 				return {
-					ChildComp,
+					key,
 				};
 			},
 		};
@@ -142,10 +146,13 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Apply attributes', () => {
+		const key = Symbol();
 		const mounted = jest.fn();
 
 		const ChildComp = {
-			mixins: [VoodooMixin()],
+			mixins: [VoodooMixin({
+				from: key,
+			})],
 			template: '<div>ChildComp</div>',
 			mounted() {
 				mounted(this.$$);
@@ -155,7 +162,7 @@ describe('VoodooDoll', () => {
 		const usage = {
 			template: `
 				<voodoo-doll
-					:target="ChildComp"
+					:secret="key"
 					a="1"
 					b="2"
 					c="3"
@@ -173,7 +180,7 @@ describe('VoodooDoll', () => {
 			},
 			data() {
 				return {
-					ChildComp,
+					key,
 				};
 			},
 		};
@@ -187,11 +194,15 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Apply props', () => {
+		const key = Symbol();
 		const mounted = jest.fn();
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin(['b']),
+				VoodooMixin({
+					from: key,
+					props: ['b'],
+				}),
 			],
 			template: '<div>ChildComp</div>',
 			mounted() {
@@ -202,7 +213,7 @@ describe('VoodooDoll', () => {
 		const usage = {
 			template: `
 				<voodoo-doll
-					:target="ChildComp"
+					:secret="key"
 					a="1"
 					:b="2"
 					c="3"
@@ -220,7 +231,7 @@ describe('VoodooDoll', () => {
 			},
 			data() {
 				return {
-					ChildComp,
+					key,
 				};
 			},
 		};
@@ -235,11 +246,15 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Proxy props to vm', () => {
+		const key = Symbol();
 		const mounted = jest.fn();
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin(['b']),
+				VoodooMixin({
+					from: key,
+					props: ['b'],
+				}),
 			],
 			template: '<div>ChildComp</div>',
 			mounted() {
@@ -250,7 +265,7 @@ describe('VoodooDoll', () => {
 		const usage = {
 			template: `
 				<voodoo-doll
-					:target="ChildComp"
+					:secret="key"
 					a="1"
 					:b="2"
 					c="3"
@@ -268,7 +283,7 @@ describe('VoodooDoll', () => {
 			},
 			data() {
 				return {
-					ChildComp,
+					key,
 				};
 			},
 		};
@@ -280,9 +295,13 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Reactive props', async () => {
+		const key = Symbol();
 		const ChildComp = {
 			mixins: [
-				VoodooMixin(['count']),
+				VoodooMixin({
+					from: key,
+					props: ['count'],
+				}),
 			],
 			template: `
 				<div
@@ -297,7 +316,7 @@ describe('VoodooDoll', () => {
 		const usage = {
 			template: `
 				<voodoo-doll
-					:target="ChildComp"
+					:secret="key"
 					:count="count"
 					:disabled="disabled"
 				>
@@ -310,9 +329,9 @@ describe('VoodooDoll', () => {
 			},
 			data() {
 				return {
+					key,
 					count: 0,
 					disabled: false,
-					ChildComp,
 				};
 			},
 		};
@@ -331,11 +350,15 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Bind event-handlers to vm', () => {
+		const key = Symbol();
 		const eventHandler = jest.fn();
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin(['b']),
+				VoodooMixin({
+					from: key,
+					props: ['b'],
+				}),
 			],
 			template: '<div>ChildComp</div>',
 			mounted() {
@@ -346,7 +369,7 @@ describe('VoodooDoll', () => {
 		const usage = {
 			template: `
 				<voodoo-doll
-					:target="ChildComp"
+					:secret="key"
 					@some-event="eventHandler"
 				>
 					<child-comp />
@@ -358,7 +381,7 @@ describe('VoodooDoll', () => {
 			},
 			data() {
 				return {
-					ChildComp,
+					key,
 				};
 			},
 			methods: {
@@ -371,11 +394,14 @@ describe('VoodooDoll', () => {
 	});
 
 	test('Pass down event-handlers to vm', () => {
+		const key = Symbol();
 		const eventHandler = jest.fn();
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin(),
+				VoodooMixin({
+					from: key,
+				}),
 			],
 			template: '<div v-on="$$.listeners">ChildComp</div>',
 		};
@@ -383,7 +409,7 @@ describe('VoodooDoll', () => {
 		const usage = {
 			template: `
 				<voodoo-doll
-					:target="ChildComp"
+					:secret="key"
 					@click="eventHandler"
 				>
 					<child-comp ref="child" />
@@ -395,7 +421,7 @@ describe('VoodooDoll', () => {
 			},
 			data() {
 				return {
-					ChildComp,
+					key,
 				};
 			},
 			methods: {
@@ -412,9 +438,13 @@ describe('VoodooDoll', () => {
 
 
 	test('Crossing voodoo-dolls', () => {
+		const key1 = Symbol();
+
 		const Child1 = {
 			mixins: [
-				VoodooMixin(),
+				VoodooMixin({
+					from: key1,
+				}),
 			],
 			template: `
 			<div v-bind="$$.attrs">
@@ -428,7 +458,7 @@ describe('VoodooDoll', () => {
 			template: `
 			<div>
 				<voodoo-doll
-					:target="Child1"
+					:secret="key1"
 					some-attr="123"
 				>
 					<slot />
@@ -439,13 +469,18 @@ describe('VoodooDoll', () => {
 				VoodooDoll,
 			},
 			data() {
-				return { Child1 };
+				return { key1 };
 			},
 		};
 
+		const key2 = Symbol();
+
 		const Child2 = {
 			mixins: [
-				VoodooMixin(['someProp']),
+				VoodooMixin({
+					from: key2,
+					props: ['someProp'],
+				}),
 			],
 			template: '<div v-bind="$$.attrs">Child {{ someProp }}</div>',
 		};
@@ -454,7 +489,7 @@ describe('VoodooDoll', () => {
 			template: `
 			<div>
 				<voodoo-doll
-					:target="Child2"
+					:secret="key2"
 					some-attr="321"
 					:some-prop="100"
 				>
@@ -466,7 +501,7 @@ describe('VoodooDoll', () => {
 				VoodooDoll,
 			},
 			data() {
-				return { Child2 };
+				return { key2 };
 			},
 		};
 

@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 const { hasOwnProperty } = Object.prototype;
 export const hasOwn = (obj, prop) => hasOwnProperty.call(obj, prop);
 
@@ -5,32 +7,16 @@ export const hasOwn = (obj, prop) => hasOwnProperty.call(obj, prop);
 const camelizeRE = /-(\w)/g;
 export const camelize = (str) => str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''));
 
-const hyphenateRE = /\B([A-Z])/g;
-export const hyphenate = (str) => str.replace(hyphenateRE, '-$1').toLowerCase();
-
-// From: https://github.com/vuejs/vue/blob/33e669b22f69a1f9c9147528360fe0bba85534f0/src/core/instance/state.js#L38
-const sharedPropertyDefinition = {
-	enumerable: true,
-	configurable: true,
-};
-
-export function proxyProp(target, targetKey, source, sourceKey = targetKey) {
-	sharedPropertyDefinition.get = () => source[sourceKey][targetKey];
-	if (!hasOwn(target, targetKey)) {
-		Object.defineProperty(target, targetKey, sharedPropertyDefinition);
-	}
-}
-
-export function initVodoo(parent, key) {
+export function initProvide(parent, key, obj) {
 	if (!parent._provided) {
 		parent._provided = {};
 	}
 
 	if (!parent._provided[key]) {
-		parent._provided[key] = new WeakMap();
+		parent._provided[key] = Vue.observable(obj);
+	} else {
+		Object.assign(parent._provided[key], obj);
 	}
-
-	return parent._provided[key];
 }
 
 export function computeProps(propsDecl, attrs) {

@@ -1,52 +1,40 @@
 import Vue from 'vue';
-import key from './key';
-import { hasOwn, camelize, proxyProp, computeProps } from './utils';
+import { hasOwn, computeProps } from './utils';
 
-export default (propsDecl = []) => ({
+const injection = '__voodooInjection';
+
+export default ({ from, props = [] } = {}) => ({
 	inject: {
-		[key]: {
-			from: key,
+		[injection]: {
+			from,
 			default: undefined,
 		},
 	},
 	created() {
-		const voodoo = this[key];
-		if (!voodoo) {
-			return;
-		}
-
-		const { extendOptions: Ctor } = this.$vnode.componentOptions.Ctor;
-		const data = voodoo.get(Ctor);
-		if (!data) {
-			return;
-		}
-
-		this.$$ = Vue.observable({
-			data,
-			get class() {
-				return data.class;
-			},
-			get listeners() {
-				return data.listeners;
-			},
-		});
-
-		this.$watch(
-			() => data.attrs,
-			() => {
-				const separated = computeProps(propsDecl, Object.assign({}, data.attrs));
-				this.$set(this.$$, 'attrs', separated.attrs);
-				this.$set(this.$$, 'props', separated.props);
-			},
-			{ immediate: true },
-		);
-
-		propsDecl.forEach((propName) => proxyProp(this, propName, this.$$, 'props'));
-
-		for (const ev in data.listeners) {
-			if (hasOwn(data.listeners, ev)) {
-				this.$on(ev, data.listeners[ev]);
+		const { data } = this[injection] || {};
+		if (data) {
+			for (const ev in data.on) {
+				if (hasOwn(data.on, ev)) {
+					this.$on(ev, data.on[ev]);
+				}
 			}
 		}
 	},
+
+	computed: props.reduce(
+		(obj, prop) => {
+			obj[prop] = function () {
+				return this.$$.props[prop];
+			};
+			return obj;
+		}, {
+			$$() {
+				const { data } = this[injection] || {};
+				return !data ? {} : Object.assign({
+					class: (data.staticClass || data.class) ? [data.staticClass, data.class] : undefined,
+					listeners: data.on,
+				}, computeProps(props, Object.assign({}, data.attrs)));
+			},
+		},
+	),
 });

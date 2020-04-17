@@ -1,42 +1,19 @@
-import Vue from 'vue';
-import key from './key';
-import { initVodoo } from './utils';
+import { initProvide } from './utils';
 
 export default {
 	functional: true,
 	props: {
-		target: {
-			type: Object,
+		secret: {
+			type: [Symbol, String],
 			required: true,
 		},
 	},
-	inject: {
-		[key]: {
-			from: key,
-			default: undefined,
-		},
-	},
 	render: (h, ctx) => {
-		const { target } = ctx.props;
+		const { secret } = ctx.props;
 
-		if (target) {
+		if (secret) {
 			const { data, parent } = ctx;
-			const { $set } = parent;
-
-			let voodoo = ctx.injections[key];
-			if (!voodoo) {
-				voodoo = initVodoo(parent, key);
-			}
-
-			let $$ = voodoo.get(target);
-			if (!$$) {
-				$$ = Vue.observable({});
-				voodoo.set(target, $$);
-			}
-
-			$set($$, 'class', [data.staticClass, data.class]);
-			$set($$, 'attrs', data.attrs);
-			$set($$, 'listeners', data.on);
+			initProvide(parent, secret, { data });
 		}
 
 		return ctx.slots().default;
