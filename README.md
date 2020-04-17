@@ -16,7 +16,7 @@ npm i vue-voodoo-doll
 ```
 
 
-## :beginner: Usage [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/p5Lz419s/)
+## :beginner: Usage [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/0szwc2uh/)
 The following demo shows you how to set up a parent-child pair to communicate using Voodoo Doll.
 Note:
 - The parent uses the `<voodoo-doll>` component with a secret key to wrap `<slot>`
