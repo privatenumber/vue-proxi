@@ -6,9 +6,9 @@
 > Add event-handlers and props on `<voodoo-doll>` and watch them to appear on another component
 
 ## :raised_hand: Why?
-Vue offers [provide/inject](https://vuejs.org/v2/api/#provide-inject) to communicate with a child component that's passed in a slot. This non-reactive, imperative approach might suffice for simple cases, but when data needs to flow bi-directionally or be reactive, you start re-inventing new ways for components to communicate. This could start getting messy and pollute your SFC with irrelevant noise.
+Vue offers [provide/inject](https://vuejs.org/v2/api/#provide-inject) to communicate with a child component that's passed in a slot. This non-reactive, imperative approach might suffice for simple cases, but when data needs to flow bi-directionally or be reactive, you start re-inventing new ways for components to communicate. This could get messy and pollute your SFC with irrelevant noise.
 
-Voodoo Doll offers a template API to pass in props and event handlers to your component.
+VoodooDoll solves this by offering a template API to pass in props and event handlers to your component.
 
 - **Noise reduction** Communicate without
 - **Declarative API** Use Vue's `@event` syntax to add event-listeners to the window as like you would to any other element
