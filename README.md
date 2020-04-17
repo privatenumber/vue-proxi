@@ -1,19 +1,14 @@
-#  Voodoo Doll
+# :ghost: Voodoo Doll
 <a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/v/vue-voodoo-doll"></a>
 <a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/dm/vue-voodoo-doll"></a>
 <a href="https://packagephobia.now.sh/result?p=vue-voodoo-doll"><img src="https://packagephobia.now.sh/badge?p=vue-voodoo-doll"></a>
 
-> Add event-handlers and props on `<voodoo-doll>` and watch them to appear on another component
+> Add props & event-handlers on `<voodoo-doll>` to proxy them to another component
 
 ## :raised_hand: Why?
-Vue offers [provide/inject](https://vuejs.org/v2/api/#provide-inject) to communicate with a child component that's passed in a slot. This non-reactive, imperative approach might suffice for simple cases, but when data needs to flow bi-directionally or be reactive, you start re-inventing new ways for components to communicate. This could get messy and pollute your SFC with irrelevant noise.
+Vue offers [provide/inject](https://vuejs.org/v2/api/#provide-inject) to communicate with a child component that's passed into a slot. This non-reactive, imperative approach might suffice for simple cases, but when data needs to flow bi-directionally or be reactive, you start re-inventing new ways for components to communicate. This could get messy and pollute your SFC with irrelevant noise.
 
-VoodooDoll solves this by offering a template API to pass in props and event handlers to your component.
-
-- **Noise reduction** Communicate without
-- **Declarative API** Use Vue's `@event` syntax to add event-listeners to the window as like you would to any other element
-- **Robust** Supports all event modifiers `capture`, `passive`, and `once`. SSR friendly.
-- **Tiny** Optimized for high compression and includes only the bare minimum
+:ghost: VoodooDoll solves this by offering a template API to interface directly with a component outside your SFC!
 
 ## :rocket: Installation
 ```sh
