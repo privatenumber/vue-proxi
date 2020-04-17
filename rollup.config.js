@@ -22,6 +22,7 @@ export default {
 		dir: 'dist',
 		format: 'umd',
 		name: 'VoodooDoll',
+		exports: 'named',
 		globals: {
 			vue: 'Vue',
 		},
