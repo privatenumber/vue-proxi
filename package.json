@@ -9,6 +9,9 @@
     "parent-child",
     "proxy"
   ],
+  "files": [
+    "dist"
+  ],
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c --environment NODE_ENV:production",
