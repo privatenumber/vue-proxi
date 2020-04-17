@@ -1,7 +1,14 @@
 {
   "name": "vue-voodoo-doll",
   "version": "1.0.0",
-  "description": "",
+  "description": "👻 Vue Child component proxy",
+  "keywords": [
+    "vue",
+    "component",
+    "voodoo",
+    "parent-child",
+    "proxy"
+  ],
   "main": "dist/index.js",
   "scripts": {
     "build": "rollup -c --environment NODE_ENV:production",
