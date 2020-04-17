@@ -17,8 +17,43 @@ npm i vue-voodoo-doll
 ```
 
 
-## :beginner: Use case [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/p5Lz419s/)
-The following demo shows a parent-demo communicating with each other using Voodoo Doll. Note how the two components only come together at usage.
+## :beginner: Usage [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/p5Lz419s/)
+The following demo shows you how to set up a parent-child pair to communicate using Voodoo Doll.
+Note:
+- The parent uses the `<voodoo-doll>` component with a secret key to wrap `<slot>`
+  - > The Voodoo magic only applies to its children!
+- The child uses the `VoodooMixin` mixin with the same key to bind to the parent's Voodoo Doll
+  - Declare the `props` array to bind given attributes to the view model context
+- The child can the Voodo via `this.$$` (`attrs`, `props`, `class`, `listeners`)
+- The two components only come together at usage
+
+
+### Usage
+_App.vue (Usage)_
+```vue
+<template>
+	<div>
+		<radio-group v-model="selected">
+			<radio label="Apples" value="apples" />
+			<radio label="Oranges" value="oranges" />
+			<radio label="Bananas" value="bananas" />
+		</radio-group>
+		<div>
+			Selected: {{ selected }}
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	data() {
+		return {
+			selected: [],
+		};
+	},
+};
+</script>
+```
 
 ### Parent
 _RadioGroup.vue_
@@ -109,32 +144,6 @@ export default {
 </script>
 ```
 
-### Usage
-_App.vue (Usage)_
-```vue
-<template>
-	<div>
-		<radio-group v-model="selected">
-			<radio label="Apples" value="apples" />
-			<radio label="Oranges" value="oranges" />
-			<radio label="Bananas" value="bananas" />
-		</radio-group>
-		<div>
-			Selected: {{ selected }}
-		</div>
-	</div>
-</template>
-
-<script>
-export default {
-	data() {
-		return {
-			selected: [],
-		};
-	},
-};
-</script>
-```
 
 ## :family: Related
 - [vue-subslot](https://github.com/privatenumber/vue-subslot) - 💍 Pick 'n choose what you want from a slot passed into your Vue component
