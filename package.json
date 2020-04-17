@@ -20,6 +20,11 @@
     "test": "jest",
     "lint": "eslint --ext js,vue ."
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm test"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/privatenumber/vue-voodoo-doll.git"

@@ -2,6 +2,14 @@ import { hasOwn, computeProps } from './utils';
 
 const injection = '__voodooInjection';
 
+const emptyObj = Object.freeze({});
+const baseVoodoo = {
+	class: undefined,
+	listeners: emptyObj,
+	attrs: emptyObj,
+	props: emptyObj,
+};
+
 export default ({ from, props = [] } = {}) => ({
 	inject: {
 		[injection]: {
@@ -29,10 +37,15 @@ export default ({ from, props = [] } = {}) => ({
 		}, {
 			$$() {
 				const { data } = this[injection] || {};
-				return !data ? {} : Object.assign({
-					class: (data.staticClass || data.class) ? [data.staticClass, data.class] : undefined,
-					listeners: data.on,
-				}, computeProps(props, Object.assign({}, data.attrs)));
+				const voodoo = Object.create(baseVoodoo);
+				return !data ? voodoo : Object.assign(
+					voodoo,
+					{
+						class: (data.staticClass || data.class) ? [data.staticClass, data.class] : undefined,
+						listeners: data.on,
+					},
+					computeProps(props, Object.assign({}, data.attrs))
+				);
 			},
 		},
 	),
