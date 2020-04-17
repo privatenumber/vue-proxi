@@ -6,10 +6,9 @@
 > Add props / event-handlers on `<voodoo-doll>` to proxy them to a distant child component
 
 ## :raising_hand: Why?
-Vue offers [provide/inject](https://vuejs.org/v2/api/#provide-inject) to communicate with a child component that's passed into a slot. This non-reactive, imperative API might suffice for simple cases, but when data needs to flow bi-directionally or be reactive, you start reinventing new ways for components to communicate. This could get messy and pollute your SFC with irrelevant noise.
+Vue offers [provide/inject](https://vuejs.org/v2/api/#provide-inject) to communicate with a child component that's passed into a slot. This non-reactive, imperative API might suffice for simple cases, but when data needs to flow bi-directionally or be reactive, you might start to reinvent new ways for components to communicate. This could get messy and pollute your SFC with irrelevant noise.
 
 _Voodoo Doll solves this by offering a template API to directly interface with a component outside your SFC! :ghost:_
-
 
 ## :rocket: Install
 ```sh
@@ -29,7 +28,6 @@ Note:
 
 
 ### Usage
-_App.vue (Usage)_
 ```vue
 <template>
 	<div>
