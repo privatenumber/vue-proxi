@@ -45,9 +45,9 @@ npm i vue-voodoo-doll
    - Event listeners and props are automatically bound to the Child component
 
 ## :beginner: Demo
-This demo shows how a parent-child set, RadioGroup and Radio, communicate using Voodoo Doll. Note how the two components only come together at usage.
+This demo shows how a parent-child pair, RadioGroup and Radio, communicate using Voodoo Doll. Note how the two components only come together at usage.
 
-Play with it out on JSFiddle: [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/0szwc2uh/)
+[![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/omqtfwpL/)
 
 <details>
 	<summary>Usage</summary>
