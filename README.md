@@ -1,9 +1,13 @@
-# :ghost: Voodoo Doll
-<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/v/vue-voodoo-doll"></a>
-<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/dm/vue-voodoo-doll"></a>
-<a href="https://packagephobia.now.sh/result?p=vue-voodoo-doll"><img src="https://packagephobia.now.sh/badge?p=vue-voodoo-doll"></a>
+<h1>
+	:ghost: Voodoo Doll
+	<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/v/vue-voodoo-doll"></a>
+	<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/dm/vue-voodoo-doll"></a>
+	<a href="https://packagephobia.now.sh/result?p=vue-voodoo-doll"><img src="https://packagephobia.now.sh/badge?p=vue-voodoo-doll"></a>
+</h1>
 
-> Add props / event-handlers on `<voodoo-doll>` to proxy them to a distant child component
+> `<voodoo-doll>` is a proxy component.
+> 
+> Whatever you add to it, it gets proxied to a target component. Just like a Voodoo Doll.
 
 ## :raising_hand: Why?
 Vue offers [provide/inject](https://vuejs.org/v2/api/#provide-inject) to communicate with a child component that's passed into a slot. This non-reactive, imperative API might suffice for simple cases, but when data needs to flow bi-directionally or be reactive, you might start to reinvent new ways for components to communicate. This could get messy and pollute your SFC with irrelevant noise.
