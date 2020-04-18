@@ -10,7 +10,7 @@ Whatever you add to it, it gets proxied to a target component. *Just like a Vood
 
 ## :raising_hand: Why?
 - :recycle: **Uses Vue's Template API:** Doesn't re-invent component communication!
-- :sparkling_heart: **Minimal setup:** Just look at the 3-step setup below!
+- :sparkling_heart: **Minimal setup:** Checkout the [3-step setup](#vertical_traffic_light-3-step-setup)
 - :sparkles: **Like Provide/Inject:** Familiar concepts → shorter learning cuve!
 - :hatched_chick: **Tiny:** 766 B Gzipped!
 
@@ -20,12 +20,12 @@ npm i vue-voodoo-doll
 ```
 
 ## :vertical_traffic_light: 3-step Setup
-1. :woman: Parent component
+#### 1. :woman: Parent component
    - Import and register `import VoodooDoll from 'vue-voodoo-doll'`
    - Insert anywhere in your template:
       - `<voodoo-doll :secret="key" [props and @event-handlers]>`
       - _`key` is used to communicate with the child. Use the same string value or a `Symbol`_
-2. :baby: Child component
+#### 2. :baby: Child component
    - Import the VoodooMixin: `import { VoodooMixin } from 'vue-voodoo-doll'`
    - Register the mixin:
      ```js
@@ -36,7 +36,7 @@ npm i vue-voodoo-doll
      	})
      ]
      ```
-3. :white_check_mark: Done!
+#### 3. :white_check_mark: Done!
    - The injected data is all available in `this.$$`
      - `this.$$.class`: Class
      - `this.$$.attrs`: Attributes
