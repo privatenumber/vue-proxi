@@ -19,8 +19,32 @@ _Voodoo Doll solves this by offering a template API to directly interface with a
 npm i vue-voodoo-doll
 ```
 
+## :vertical_traffic_light: 3-step Setup
+1. Parent component
+   - Import and register `import VoodooDoll from 'vue-voodoo-doll'`
+   - Insert anywhere in your template:
+      - `<voodoo-doll :secret="key" [props and @event-handlers]>`
+      - _`key` is used to communicate with the child. Use the same string value or a `Symbol`_
+2. Child component
+   - Import the VoodooMixin: `import { VoodooMixin } from 'vue-voodoo-doll'`
+   - Register the mixin:
+     ```js
+     mixins: [
+     	VoodooMixin({
+     		from: key,
+     		props: ['propName', ...] // Makes attributes available via `this.propName`
+     	})
+     ]
+     ```
+3. Done!
+   - The injected data is all available in `this.$$`
+     - `this.$$.class`: Class
+     - `this.$$.attrs`: Attributes
+     - `this.$$.props`: Props
+     - `this.$$.listeners`: Event listeners
+   - Event listeners are automatically bound to the Child component
 
-## :beginner: Usage [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/0szwc2uh/)
+## :beginner: Demos [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/0szwc2uh/)
 The following demo shows you how to set up a parent-child pair to communicate using Voodoo Doll.
 Note:
 - The parent uses the `<voodoo-doll>` component with a secret key to wrap `<slot>`
