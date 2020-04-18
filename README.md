@@ -5,14 +5,14 @@
 	<a href="https://packagephobia.now.sh/result?p=vue-voodoo-doll"><img src="https://packagephobia.now.sh/badge?p=vue-voodoo-doll"></a>
 </h1>
 
-> `<voodoo-doll>` is a proxy component.
-> 
-> Whatever you add to it, it gets proxied to a target component. Just like a Voodoo Doll.
+`<voodoo-doll>` is a proxy component.
+Whatever you add to it, it gets proxied to a target component. *Just like a Voodoo Doll.*
 
 ## :raising_hand: Why?
-Vue offers [provide/inject](https://vuejs.org/v2/api/#provide-inject) to communicate with a child component that's passed into a slot. This non-reactive, imperative API might suffice for simple cases, but when data needs to flow bi-directionally or be reactive, you might start to reinvent new ways for components to communicate. This could get messy and pollute your SFC with irrelevant noise.
-
-_Voodoo Doll solves this by offering a template API to directly interface with a component outside your SFC! :ghost:_
+- :recycle: **Uses Vue's Template API:** Doesn't re-invent component communication!
+- :sparkling_heart: **Minimal setup:** Just look at the 3-step setup below!
+- :sparkles: **Like Provide/Inject:** Familiar concepts → shorter learning cuve!
+- :hatched_chick: **Tiny:** 766 B Gzipped!
 
 ## :rocket: Install
 ```sh
@@ -20,12 +20,12 @@ npm i vue-voodoo-doll
 ```
 
 ## :vertical_traffic_light: 3-step Setup
-1. Parent component
+1. :woman: Parent component
    - Import and register `import VoodooDoll from 'vue-voodoo-doll'`
    - Insert anywhere in your template:
       - `<voodoo-doll :secret="key" [props and @event-handlers]>`
       - _`key` is used to communicate with the child. Use the same string value or a `Symbol`_
-2. Child component
+2. :baby: Child component
    - Import the VoodooMixin: `import { VoodooMixin } from 'vue-voodoo-doll'`
    - Register the mixin:
      ```js
@@ -36,13 +36,13 @@ npm i vue-voodoo-doll
      	})
      ]
      ```
-3. Done!
+3. :white_check_mark: Done!
    - The injected data is all available in `this.$$`
      - `this.$$.class`: Class
      - `this.$$.attrs`: Attributes
      - `this.$$.props`: Props
      - `this.$$.listeners`: Event listeners
-   - Event listeners are automatically bound to the Child component
+   - Event listeners and props are automatically bound to the Child component
 
 ## :beginner: Demos [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/0szwc2uh/)
 The following demo shows you how to set up a parent-child pair to communicate using Voodoo Doll.
