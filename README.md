@@ -44,18 +44,14 @@ npm i vue-voodoo-doll
      - `this.$$.listeners`: Event listeners
    - Event listeners and props are automatically bound to the Child component
 
-## :beginner: Demos [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/0szwc2uh/)
-The following demo shows you how to set up a parent-child pair to communicate using Voodoo Doll.
-Note:
-- The parent uses the `<voodoo-doll>` component with a secret key to wrap `<slot>`
-  - > The Voodoo magic only applies to its children!
-- The child uses the `VoodooMixin` mixin with the same key to bind to the parent's Voodoo Doll
-  - Declare the `props` array to bind given attributes to the view model context
-- The child can the Voodo via `this.$$` (`attrs`, `props`, `class`, `listeners`)
-- The two components only come together at usage
+## :beginner: Demo
+This demo shows how a parent-child set, RadioGroup and Radio, communicate using Voodoo Doll. Note how the two components only come together at usage.
 
+Play with it out on JSFiddle: [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/0szwc2uh/)
 
-### Usage
+<details>
+	<summary>Usage</summary>
+
 ```vue
 <template>
 	<div>
@@ -80,8 +76,11 @@ export default {
 };
 </script>
 ```
+</details>
 
-### Parent: _RadioGroup.vue_
+<details>
+	<summary>Parent: <i>RadioGroup.vue</i></summary>
+
 ```vue
 <template>
 	<div>
@@ -115,8 +114,13 @@ export default {
 }
 </script>
 ```
+</details>
 
-### Child: _Radio.vue_
+
+<details>
+	<summary>Child: <i>Radio.vue</i></summary>
+
+
 ```vue
 <template>
 	<label>
@@ -167,6 +171,7 @@ export default {
 };
 </script>
 ```
+</details>
 
 
 ## :family: Related
