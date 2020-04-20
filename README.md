@@ -25,7 +25,7 @@ npm i vue-voodoo-doll
 #### 1. :woman: Parent component
    - Import and register `import VoodooDoll from 'vue-voodoo-doll'`
    - Insert anywhere in your template:
-      - `<voodoo-doll :secret="key" [props and @event-handlers]>`
+      - `<voodoo-doll :secret="key" [... attr / :prop / @listeners]>`
       - _`key` is used to communicate with the child. Use the same string value or a `Symbol`_
 #### 2. :baby: Child component
    - Import the VoodooMixin: `import { VoodooMixin } from 'vue-voodoo-doll'`
