@@ -39,10 +39,11 @@ npm i vue-voodoo-doll
 #### 3. :white_check_mark: Done!
    - The injected data is all available in `this.$$`
      - `this.$$.class`: Class
+     - `this.$$.props`: Props _(Automatically bound to VM)_
      - `this.$$.attrs`: Attributes
-     - `this.$$.props`: Props
-     - `this.$$.listeners`: Event listeners
-   - Event listeners and props are automatically bound to the Child component
+       - _eg. `v-bind="$$.attrs"` or `v-bind="{ ...$attrs, ...$$.attrs }"`_
+     - `this.$$.listeners`: Event listeners _(Automatically bound to VM)_
+       - _eg. `v-on="$$.listeners"` or `v-on="{ ...$listeners, ...$$.listeners }"`_
 
 ## :beginner: Demo
 This demo shows how a parent-child pair, RadioGroup and Radio, communicate using Voodoo Doll. Note how the two components only come together at usage.
