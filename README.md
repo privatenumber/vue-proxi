@@ -3,6 +3,8 @@
 	<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/v/vue-voodoo-doll"></a>
 	<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/dm/vue-voodoo-doll"></a>
 	<a href="https://packagephobia.now.sh/result?p=vue-voodoo-doll"><img src="https://packagephobia.now.sh/badge?p=vue-voodoo-doll"></a>
+	<a href="https://bundlephobia.com/result?p=vue-voodoo-doll
+"><img src="https://badgen.net/bundlephobia/minzip/vue-voodoo-doll"></a>
 </h1>
 
 `<voodoo-doll>` is a proxy component.
