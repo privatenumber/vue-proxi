@@ -7,7 +7,7 @@
 "><img src="https://badgen.net/bundlephobia/minzip/vue-voodoo-doll"></a>
 </h1>
 
-`<voodoo-doll>` is a proxy component.
+`<voodoo-doll>` is a Vue proxy component.
 Whatever you add to it, it gets proxied to a target component. *Just like a Voodoo Doll.*
 
 ## :raising_hand: Why?
