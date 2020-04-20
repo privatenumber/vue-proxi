@@ -26,15 +26,15 @@ npm i vue-voodoo-doll
    - Import and register `import VoodooDoll from 'vue-voodoo-doll'`
    - Insert anywhere in your template:
       - `<voodoo-doll :secret="key" [... attr / :prop / @listener]>`
-      - _`key` is used to communicate with the child. Use the same string value or a `Symbol`_
+      - _`key` is used to communicate with the Child. Use a unique string value or a `Symbol`_
 #### 2. :baby: Child component
    - Import the VoodooMixin: `import { VoodooMixin } from 'vue-voodoo-doll'`
    - Register the mixin:
      ```js
      mixins: [
      	VoodooMixin({
-     		from: key,
-     		props: ['propName', ...] // Makes attributes available via `this.propName`
+     		from: key, // from Step 1
+     		props: ['propName', ...] // Becomes available on VM eg. `this.propName`
      	})
      ]
      ```
