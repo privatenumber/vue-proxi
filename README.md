@@ -48,7 +48,145 @@ npm i vue-voodoo-doll
      - `this.$$.listeners`: Event listeners _(Automatically bound to VM)_
        - _eg. `v-on="$$.listeners"` or `v-on="{ ...$listeners, ...$$.listeners }"`_
 
-## :beginner: Demo
+## :beginner: Demos
+
+<details>
+	<summary><strong>Inheriting props</strong></summary>
+	<br>
+	<table>
+		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
+		<tr>
+			<td valign="top"><pre lang="html">
+&lt;voodoo-doll
+    :key="key"
+    :child-disabled="isDisabled"
+    :child-label="label"
+/&gt;
+	</pre></td>
+			<td><pre lang="html">
+&lt;label&gt;
+    {{ label }}
+    &lt;input
+        type="checkbox"
+        :disabled="childDisabled"
+    &gt;
+&lt;/label&gt;
+	</pre><hr><pre lang="js">
+export default {
+  mixins: [
+    VoodooMixin({
+      from: key,
+      props: [
+        'childDisabled',
+        'childLabel'
+      ]
+    })
+  ],
+  computed: {
+    label() {
+      return this.childLabel + ':';
+    }
+  }
+};
+	</pre></td>
+		</tr>
+	</table>
+</details>
+
+<details>
+	<summary><strong>Inheriting class</strong></summary>
+	<br>
+	<table>
+		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
+		<tr>
+			<td valign="top"><pre lang="html">
+&lt;voodoo-doll
+    :key="key"
+    :class="['child-class', {
+        disabled: isDisabled
+    }]"
+/&gt;
+	</pre></td>
+			<td><pre lang="html">
+&lt;div :class="$$.class"&gt;
+    Child
+&lt;/div&gt;
+</pre><hr><pre lang="js">
+export default {
+    mixins: [
+        VoodooMixin({ from: key })
+    ],
+};
+	</pre></td>
+		</tr>
+	</table>
+</details>
+
+<details>
+	<summary><strong>Inheriting attrs</strong></summary>
+	<br>
+	<table>
+		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
+		<tr>
+			<td valign="top"><pre lang="html">
+&lt;voodoo-doll
+    :key="key"
+    :disabled="true"
+/&gt;
+	</pre></td>
+			<td><pre lang="html">
+&lt;div
+    :disabled="$$.attrs.disabled"
+
+    v-bind="$$.attrs"
+&gt;
+    Child
+&lt;/div&gt;
+</pre><hr><pre lang="js">
+export default {
+    mixins: [
+        VoodooMixin({ from: key })
+    ],
+};
+	</pre></td>
+		</tr>
+	</table>
+</details>
+
+<details>
+	<summary><strong>Inheriting listeners</strong></summary>
+	<br>
+	<table>
+		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
+		<tr>
+			<td valign="top"><pre lang="html">
+&lt;voodoo-doll
+    :key="key"
+    @click="handleClick"
+    @custom-event="handleCustomEvent"
+/&gt;
+	</pre></td>
+			<td><pre lang="html">
+&lt;button v-on="$$.listeners"&gt;
+    Child
+&lt;/button&gt;
+</pre><hr><pre lang="js">
+export default {
+    mixins: [
+        VoodooMixin({ from: key })
+    ],
+    mounted() {
+        // Listeners are automatically bound to VM
+        this.$emit('custom-event', 'Mounted!');
+    }
+};
+	</pre></td>
+		</tr>
+	</table>
+</details>
+
+
+### Advanced
 This demo shows how a parent-child pair, RadioGroup and Radio, communicate using Voodoo Doll. Note how the two components only come together at usage.
 
 [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/omqtfwpL/)
