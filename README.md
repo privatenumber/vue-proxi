@@ -48,7 +48,7 @@ npm i vue-voodoo-doll
      - `this.$$.listeners`: Event listeners _(Automatically bound to VM)_
        - _eg. `v-on="$$.listeners"` or `v-on="{ ...$listeners, ...$$.listeners }"`_
 
-## :beginner: Demos
+## :man_teacher: Demos
 
 <details>
 	<summary><strong>Inheriting props</strong></summary>
