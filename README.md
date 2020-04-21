@@ -12,8 +12,9 @@ Whatever you add to it, it gets proxied to a target component. *Just like a Vood
 
 ## :raising_hand: Why?
 - :recycle: **Uses Vue's Template API:** Doesn't re-invent component communication!
-- :sparkling_heart: **Minimal setup:** Checkout the [3-step setup](#vertical_traffic_light-3-step-setup)
+- :sparkling_heart: **Minimal setup:** Checkout the [3-step setup](#vertical_traffic_light-3-step-setup)!
 - :sparkles: **Like Provide/Inject:** Familiar concepts → shorter learning cuve!
+- :boom: **Reactive** All injected data is reactive!
 - :hatched_chick: **Tiny:** 766 B Gzipped!
 
 ## :rocket: Install
