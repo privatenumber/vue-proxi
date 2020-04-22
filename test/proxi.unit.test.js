@@ -68,7 +68,7 @@ describe('Error handling - ProxiInject', () => {
 		expect(wrapper.text()).toBe('Content');
 	});
 
-	test('No key', () => {
+	test('No key - should warn', () => {
 		const warnHandler = jest.fn();
 		Vue.config.warnHandler = warnHandler;
 
@@ -95,6 +95,48 @@ describe('Error handling - ProxiInject', () => {
 			},
 			data() {
 				return {
+					ChildComp,
+				};
+			},
+		};
+
+		mount(usage);
+		expect(warnHandler.mock.calls.length).toBe(1);
+	});
+
+	test('Colliding props - should warn', () => {
+		const warnHandler = jest.fn();
+		Vue.config.warnHandler = warnHandler;
+
+		const key = Symbol('key');
+		const ChildComp = {
+			mixins: [ProxiInject({
+				from: key,
+				props: ['disabled']
+			})],
+			props: ['disabled'],
+			template: '<div>ChildComp</div>',
+		};
+
+		const usage = {
+			template: `
+				<proxi
+					:proxi-key="key"
+					disabled
+				>
+					<child-comp
+						ref="child"
+						class="child-static-class"
+					/>
+				</proxi>
+			`,
+			components: {
+				Proxi,
+				ChildComp,
+			},
+			data() {
+				return {
+					key,
 					ChildComp,
 				};
 			},
