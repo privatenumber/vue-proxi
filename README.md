@@ -28,11 +28,11 @@ npm i vue-proxi
       - `<proxi :proxi-key="key" [... attr / :prop / @listener]>`
       - _`key` is used to communicate with the Child. Use a unique string value or a `Symbol`_
 #### 2. :baby: Child component
-   - Import the ProxiMixin: `import { ProxiMixin } from 'vue-proxi'`
+   - Import the Proxi Inject mixin: `import { ProxiInject } from 'vue-proxi'`
    - Register the mixin:
      ```js
      mixins: [
-     	ProxiMixin({
+     	ProxiInject({
      		from: key, // from Step 1
      		props: ['propName', ...] // Becomes available on VM eg. `this.propName`
      	})
@@ -73,7 +73,7 @@ npm i vue-proxi
 	</pre><hr><pre lang="js">
 export default {
   mixins: [
-    ProxiMixin({
+    ProxiInject({
       from: key,
       props: [
         'childDisabled',
@@ -113,7 +113,7 @@ export default {
 </pre><hr><pre lang="js">
 export default {
     mixins: [
-        ProxiMixin({ from: key })
+        ProxiInject({ from: key })
     ],
 };
 	</pre></td>
@@ -144,7 +144,7 @@ export default {
 </pre><hr><pre lang="js">
 export default {
     mixins: [
-        ProxiMixin({ from: key })
+        ProxiInject({ from: key })
     ],
 };
 	</pre></td>
@@ -172,7 +172,7 @@ export default {
 </pre><hr><pre lang="js">
 export default {
     mixins: [
-        ProxiMixin({ from: key })
+        ProxiInject({ from: key })
     ],
     mounted() {
         // Listeners are automatically bound to VM
@@ -275,11 +275,11 @@ export default {
 </template>
 
 <script>
-import { ProxiMixin } from 'vue-proxi';
+import { ProxiInject } from 'vue-proxi';
 
 export default {
 	mixins: [
-		ProxiMixin({
+		ProxiInject({
 			// Same key as parent
 			from: 'radios',
 

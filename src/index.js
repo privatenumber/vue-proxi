@@ -1,2 +1,2 @@
 export { default } from './proxi';
-export { default as ProxiMixin } from './proxi-mixin';
+export { default as ProxiInject } from './proxi-inject';

@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { mount } from '@vue/test-utils';
-import Proxi, { ProxiMixin } from 'vue-proxi';
+import Proxi, { ProxiInject } from 'vue-proxi';
 
 describe('Error handling - Proxi', () => {
 	test('No key - empty', () => {
@@ -49,14 +49,14 @@ describe('Error handling - Proxi', () => {
 	});
 });
 
-describe('Error handling - ProxiMixin', () => {
+describe('Error handling - ProxiInject', () => {
 	test('No Proxi injection - fail silently', () => {
 		const warnHandler = jest.fn();
 		Vue.config.warnHandler = warnHandler;
 
 		const usage = {
 			mixins: [
-				ProxiMixin(),
+				ProxiInject(),
 			],
 			template: `
 				<div>Content</div>
@@ -73,7 +73,7 @@ describe('Error handling - ProxiMixin', () => {
 		Vue.config.warnHandler = warnHandler;
 
 		const ChildComp = {
-			mixins: [ProxiMixin()],
+			mixins: [ProxiInject()],
 			template: '<div>ChildComp</div>',
 		};
 
@@ -110,7 +110,7 @@ describe('Proxi', () => {
 		const key = Symbol('key');
 
 		const ChildComp = {
-			mixins: [ProxiMixin({
+			mixins: [ProxiInject({
 				from: key,
 			})],
 			template: '<div :class="$$.class">ChildComp</div>',
@@ -150,7 +150,7 @@ describe('Proxi', () => {
 		const mounted = jest.fn();
 
 		const ChildComp = {
-			mixins: [ProxiMixin({
+			mixins: [ProxiInject({
 				from: key,
 			})],
 			template: '<div>ChildComp</div>',
@@ -199,7 +199,7 @@ describe('Proxi', () => {
 
 		const ChildComp = {
 			mixins: [
-				ProxiMixin({
+				ProxiInject({
 					from: key,
 					props: ['b'],
 				}),
@@ -251,7 +251,7 @@ describe('Proxi', () => {
 
 		const ChildComp = {
 			mixins: [
-				ProxiMixin({
+				ProxiInject({
 					from: key,
 					props: ['b'],
 				}),
@@ -298,7 +298,7 @@ describe('Proxi', () => {
 		const key = Symbol('key');
 		const ChildComp = {
 			mixins: [
-				ProxiMixin({
+				ProxiInject({
 					from: key,
 					props: ['count'],
 				}),
@@ -355,7 +355,7 @@ describe('Proxi', () => {
 
 		const ChildComp = {
 			mixins: [
-				ProxiMixin({
+				ProxiInject({
 					from: key,
 					props: ['b'],
 				}),
@@ -399,7 +399,7 @@ describe('Proxi', () => {
 
 		const ChildComp = {
 			mixins: [
-				ProxiMixin({
+				ProxiInject({
 					from: key,
 				}),
 			],
@@ -442,7 +442,7 @@ describe('Proxi', () => {
 
 		const Child1 = {
 			mixins: [
-				ProxiMixin({
+				ProxiInject({
 					from: key1,
 				}),
 			],
@@ -477,7 +477,7 @@ describe('Proxi', () => {
 
 		const Child2 = {
 			mixins: [
-				ProxiMixin({
+				ProxiInject({
 					from: key2,
 					props: ['someProp'],
 				}),
