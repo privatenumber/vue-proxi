@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import { mount } from '@vue/test-utils';
-import VoodooDoll, { VoodooMixin } from 'vue-voodoo-doll';
+import Proxi, { ProxiMixin } from 'vue-proxi';
 
-describe('Error handling - VoodooDoll', () => {
+describe('Error handling - Proxi', () => {
 	test('No key - empty', () => {
 		const warnHandler = jest.fn();
 		Vue.config.warnHandler = warnHandler;
@@ -10,11 +10,11 @@ describe('Error handling - VoodooDoll', () => {
 		const usage = {
 			template: `
 				<div>
-					<voodoo-doll />
+					<proxi />
 				</div>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 			},
 		};
 
@@ -30,16 +30,16 @@ describe('Error handling - VoodooDoll', () => {
 		const usage = {
 			template: `
 				<div>
-					<voodoo-doll>
+					<proxi>
 						Hello World!
 						<div>
 							Goodbye <span>World</span>!
 						</div>
-					</voodoo-doll>
+					</proxi>
 				</div>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 			},
 		};
 
@@ -49,14 +49,14 @@ describe('Error handling - VoodooDoll', () => {
 	});
 });
 
-describe('Error handling - VoodooMixin', () => {
-	test('No voodoo injection - fail silently', () => {
+describe('Error handling - ProxiMixin', () => {
+	test('No Proxi injection - fail silently', () => {
 		const warnHandler = jest.fn();
 		Vue.config.warnHandler = warnHandler;
 
 		const usage = {
 			mixins: [
-				VoodooMixin(),
+				ProxiMixin(),
 			],
 			template: `
 				<div>Content</div>
@@ -73,13 +73,13 @@ describe('Error handling - VoodooMixin', () => {
 		Vue.config.warnHandler = warnHandler;
 
 		const ChildComp = {
-			mixins: [VoodooMixin()],
+			mixins: [ProxiMixin()],
 			template: '<div>ChildComp</div>',
 		};
 
 		const usage = {
 			template: `
-				<voodoo-doll
+				<proxi
 					class="static-class"
 					:class="'computed-class'"
 				>
@@ -87,10 +87,10 @@ describe('Error handling - VoodooMixin', () => {
 						ref="child"
 						class="child-static-class"
 					/>
-				</voodoo-doll>
+				</proxi>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 				ChildComp,
 			},
 			data() {
@@ -105,12 +105,12 @@ describe('Error handling - VoodooMixin', () => {
 	});
 });
 
-describe('VoodooDoll', () => {
+describe('Proxi', () => {
 	test('Apply classes', () => {
 		const key = Symbol('key');
 
 		const ChildComp = {
-			mixins: [VoodooMixin({
+			mixins: [ProxiMixin({
 				from: key,
 			})],
 			template: '<div :class="$$.class">ChildComp</div>',
@@ -118,7 +118,7 @@ describe('VoodooDoll', () => {
 
 		const usage = {
 			template: `
-				<voodoo-doll
+				<proxi
 					:secret="key"
 					class="static-class"
 					:class="'computed-class'"
@@ -127,10 +127,10 @@ describe('VoodooDoll', () => {
 						ref="child"
 						class="child-static-class"
 					/>
-				</voodoo-doll>
+				</proxi>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 				ChildComp,
 			},
 			data() {
@@ -150,7 +150,7 @@ describe('VoodooDoll', () => {
 		const mounted = jest.fn();
 
 		const ChildComp = {
-			mixins: [VoodooMixin({
+			mixins: [ProxiMixin({
 				from: key,
 			})],
 			template: '<div>ChildComp</div>',
@@ -161,7 +161,7 @@ describe('VoodooDoll', () => {
 
 		const usage = {
 			template: `
-				<voodoo-doll
+				<proxi
 					:secret="key"
 					a="1"
 					b="2"
@@ -172,10 +172,10 @@ describe('VoodooDoll', () => {
 						b="1"
 						c="2"
 					/>
-				</voodoo-doll>
+				</proxi>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 				ChildComp,
 			},
 			data() {
@@ -199,7 +199,7 @@ describe('VoodooDoll', () => {
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin({
+				ProxiMixin({
 					from: key,
 					props: ['b'],
 				}),
@@ -212,7 +212,7 @@ describe('VoodooDoll', () => {
 
 		const usage = {
 			template: `
-				<voodoo-doll
+				<proxi
 					:secret="key"
 					a="1"
 					:b="2"
@@ -223,10 +223,10 @@ describe('VoodooDoll', () => {
 						b="1"
 						c="2"
 					/>
-				</voodoo-doll>
+				</proxi>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 				ChildComp,
 			},
 			data() {
@@ -251,7 +251,7 @@ describe('VoodooDoll', () => {
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin({
+				ProxiMixin({
 					from: key,
 					props: ['b'],
 				}),
@@ -264,7 +264,7 @@ describe('VoodooDoll', () => {
 
 		const usage = {
 			template: `
-				<voodoo-doll
+				<proxi
 					:secret="key"
 					a="1"
 					:b="2"
@@ -275,10 +275,10 @@ describe('VoodooDoll', () => {
 						b="1"
 						c="2"
 					/>
-				</voodoo-doll>
+				</proxi>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 				ChildComp,
 			},
 			data() {
@@ -298,7 +298,7 @@ describe('VoodooDoll', () => {
 		const key = Symbol('key');
 		const ChildComp = {
 			mixins: [
-				VoodooMixin({
+				ProxiMixin({
 					from: key,
 					props: ['count'],
 				}),
@@ -315,16 +315,16 @@ describe('VoodooDoll', () => {
 
 		const usage = {
 			template: `
-				<voodoo-doll
+				<proxi
 					:secret="key"
 					:count="count"
 					:disabled="disabled"
 				>
 					<child-comp />
-				</voodoo-doll>
+				</proxi>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 				ChildComp,
 			},
 			data() {
@@ -355,7 +355,7 @@ describe('VoodooDoll', () => {
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin({
+				ProxiMixin({
 					from: key,
 					props: ['b'],
 				}),
@@ -368,15 +368,15 @@ describe('VoodooDoll', () => {
 
 		const usage = {
 			template: `
-				<voodoo-doll
+				<proxi
 					:secret="key"
 					@some-event="eventHandler"
 				>
 					<child-comp />
-				</voodoo-doll>
+				</proxi>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 				ChildComp,
 			},
 			data() {
@@ -399,7 +399,7 @@ describe('VoodooDoll', () => {
 
 		const ChildComp = {
 			mixins: [
-				VoodooMixin({
+				ProxiMixin({
 					from: key,
 				}),
 			],
@@ -408,15 +408,15 @@ describe('VoodooDoll', () => {
 
 		const usage = {
 			template: `
-				<voodoo-doll
+				<proxi
 					:secret="key"
 					@click="eventHandler"
 				>
 					<child-comp ref="child" />
-				</voodoo-doll>
+				</proxi>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 				ChildComp,
 			},
 			data() {
@@ -437,12 +437,12 @@ describe('VoodooDoll', () => {
 	});
 
 
-	test('Crossing voodoo-dolls', () => {
+	test('Crossing proxis', () => {
 		const key1 = Symbol('key');
 
 		const Child1 = {
 			mixins: [
-				VoodooMixin({
+				ProxiMixin({
 					from: key1,
 				}),
 			],
@@ -457,16 +457,16 @@ describe('VoodooDoll', () => {
 		const Parent1 = {
 			template: `
 			<div>
-				<voodoo-doll
+				<proxi
 					:secret="key1"
 					some-attr="123"
 				>
 					<slot />
-				</voodoo-doll>
+				</proxi>
 			</div>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 			},
 			data() {
 				return { key1 };
@@ -477,7 +477,7 @@ describe('VoodooDoll', () => {
 
 		const Child2 = {
 			mixins: [
-				VoodooMixin({
+				ProxiMixin({
 					from: key2,
 					props: ['someProp'],
 				}),
@@ -488,17 +488,17 @@ describe('VoodooDoll', () => {
 		const Parent2 = {
 			template: `
 			<div>
-				<voodoo-doll
+				<proxi
 					:secret="key2"
 					some-attr="321"
 					:some-prop="100"
 				>
 					<slot />
-				</voodoo-doll>
+				</proxi>
 			</div>
 			`,
 			components: {
-				VoodooDoll,
+				Proxi,
 			},
 			data() {
 				return { key2 };

@@ -1,14 +1,13 @@
 <h1>
-	:ghost: Voodoo Doll
-	<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/v/vue-voodoo-doll"></a>
-	<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/dm/vue-voodoo-doll"></a>
-	<a href="https://packagephobia.now.sh/result?p=vue-voodoo-doll"><img src="https://packagephobia.now.sh/badge?p=vue-voodoo-doll"></a>
-	<a href="https://bundlephobia.com/result?p=vue-voodoo-doll
-"><img src="https://badgen.net/bundlephobia/minzip/vue-voodoo-doll"></a>
+	:diamond_shape_with_a_dot_inside: Proxi
+	<a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/v/vue-proxi"></a>
+	<a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/dm/vue-proxi"></a>
+	<a href="https://packagephobia.now.sh/result?p=vue-proxi"><img src="https://packagephobia.now.sh/badge?p=vue-proxi"></a>
+	<a href="https://bundlephobia.com/result?p=vue-proxi
+"><img src="https://badgen.net/bundlephobia/minzip/vue-proxi"></a>
 </h1>
 
-`<voodoo-doll>` is a Vue proxy component.
-Whatever you add to it, it gets proxied to a target component. *Just like a Voodoo Doll.*
+`<proxi>` is a tiny Vue proxy component. Whatever you add to it, it gets proxied to a target component!
 
 ## :raising_hand: Why?
 - :recycle: **Uses Vue's Template API:** Doesn't re-invent component communication!
@@ -19,21 +18,21 @@ Whatever you add to it, it gets proxied to a target component. *Just like a Vood
 
 ## :rocket: Install
 ```sh
-npm i vue-voodoo-doll
+npm i vue-proxi
 ```
 
 ## :vertical_traffic_light: 3-step Setup
 #### 1. :woman: Parent component
-   - Import and register `import VoodooDoll from 'vue-voodoo-doll'`
+   - Import and register `import Proxi from 'vue-proxi'`
    - Insert anywhere in your template:
-      - `<voodoo-doll :secret="key" [... attr / :prop / @listener]>`
+      - `<proxi :secret="key" [... attr / :prop / @listener]>`
       - _`key` is used to communicate with the Child. Use a unique string value or a `Symbol`_
 #### 2. :baby: Child component
-   - Import the VoodooMixin: `import { VoodooMixin } from 'vue-voodoo-doll'`
+   - Import the ProxiMixin: `import { ProxiMixin } from 'vue-proxi'`
    - Register the mixin:
      ```js
      mixins: [
-     	VoodooMixin({
+     	ProxiMixin({
      		from: key, // from Step 1
      		props: ['propName', ...] // Becomes available on VM eg. `this.propName`
      	})
@@ -57,7 +56,7 @@ npm i vue-voodoo-doll
 		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
 		<tr>
 			<td valign="top"><pre lang="html">
-&lt;voodoo-doll
+&lt;proxi
     :key="key"
     :child-disabled="isDisabled"
     :child-label="label"
@@ -74,7 +73,7 @@ npm i vue-voodoo-doll
 	</pre><hr><pre lang="js">
 export default {
   mixins: [
-    VoodooMixin({
+    ProxiMixin({
       from: key,
       props: [
         'childDisabled',
@@ -100,7 +99,7 @@ export default {
 		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
 		<tr>
 			<td valign="top"><pre lang="html">
-&lt;voodoo-doll
+&lt;proxi
     :key="key"
     :class="['child-class', {
         disabled: isDisabled
@@ -114,7 +113,7 @@ export default {
 </pre><hr><pre lang="js">
 export default {
     mixins: [
-        VoodooMixin({ from: key })
+        ProxiMixin({ from: key })
     ],
 };
 	</pre></td>
@@ -129,7 +128,7 @@ export default {
 		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
 		<tr>
 			<td valign="top"><pre lang="html">
-&lt;voodoo-doll
+&lt;proxi
     :key="key"
     :disabled="true"
 /&gt;
@@ -145,7 +144,7 @@ export default {
 </pre><hr><pre lang="js">
 export default {
     mixins: [
-        VoodooMixin({ from: key })
+        ProxiMixin({ from: key })
     ],
 };
 	</pre></td>
@@ -160,7 +159,7 @@ export default {
 		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
 		<tr>
 			<td valign="top"><pre lang="html">
-&lt;voodoo-doll
+&lt;proxi
     :key="key"
     @click="handleClick"
     @custom-event="handleCustomEvent"
@@ -173,7 +172,7 @@ export default {
 </pre><hr><pre lang="js">
 export default {
     mixins: [
-        VoodooMixin({ from: key })
+        ProxiMixin({ from: key })
     ],
     mounted() {
         // Listeners are automatically bound to VM
@@ -187,7 +186,7 @@ export default {
 
 
 ### Advanced
-This demo shows how a parent-child pair, RadioGroup and Radio, communicate using Voodoo Doll. Note how the two components only come together at usage.
+This demo shows how a parent-child pair, RadioGroup and Radio, communicate using Proxi. Note how the two components only come together at usage.
 
 [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/omqtfwpL/)
 
@@ -226,22 +225,22 @@ export default {
 ```vue
 <template>
 	<div>
-		<voodoo-doll
+		<proxi
 			:secret="key"
 			:checkedItems="value"
 			@update="$emit('input', $event)"
 		>
 			<slot />
-		</voodoo-doll>
+		</proxi>
 	</div>
 </template>
 
 <script>
-import VoodooDoll from 'vue-voodoo-doll';
+import Proxi from 'vue-proxi';
 
 export default {
 	components: {
-		VoodooDoll,
+		Proxi,
 	},
 
 	props: ['value'],
@@ -276,15 +275,15 @@ export default {
 </template>
 
 <script>
-import { VoodooMixin } from 'vue-voodoo-doll';
+import { ProxiMixin } from 'vue-proxi';
 
 export default {
 	mixins: [
-		VoodooMixin({
+		ProxiMixin({
 			// Same key as parent
 			from: 'radios',
 
-			// Declare props that can be voodoo'd in
+			// Declare props that can be injected in
 			// Only array supported for now
 			props: ['checkedItems'],
 		})

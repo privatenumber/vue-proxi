@@ -1,11 +1,11 @@
 {
-  "name": "vue-voodoo-doll",
+  "name": "vue-proxi",
   "version": "1.0.0-beta.1",
-  "description": "👻 Vue Child component proxy",
+  "description": "💠 Vue Child component proxy",
   "keywords": [
     "vue",
     "component",
-    "voodoo",
+    "proxi",
     "parent-child",
     "proxy"
   ],
@@ -27,14 +27,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/privatenumber/vue-voodoo-doll.git"
+    "url": "git+https://github.com/privatenumber/vue-proxi.git"
   },
   "author": "Hiroki Osame <hiroki.osame@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/privatenumber/vue-voodoo-doll/issues"
+    "url": "https://github.com/privatenumber/vue-proxi/issues"
   },
-  "homepage": "https://github.com/privatenumber/vue-voodoo-doll#readme",
+  "homepage": "https://github.com/privatenumber/vue-proxi#readme",
   "devDependencies": {
     "@babel/core": "^7.8.7",
     "@babel/preset-env": "^7.9.5",

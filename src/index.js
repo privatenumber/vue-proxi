@@ -1,2 +1,2 @@
-export { default } from './voodoo-doll';
-export { default as VoodooMixin } from './voodoo-mixin';
+export { default } from './proxi';
+export { default as ProxiMixin } from './proxi-mixin';
