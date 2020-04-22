@@ -18,13 +18,24 @@ export default {
 		}),
 		isProd && filesize(),
 	],
-	output: {
-		dir: 'dist',
-		format: 'umd',
-		name: 'Proxi',
-		exports: 'named',
-		globals: {
-			vue: 'Vue',
+	output: [
+		{
+			format: 'es',
+			file: 'dist/proxi.esm.js',
 		},
-	},
+		{
+			format: 'cjs',
+			file: 'dist/proxi.cjs.js',
+			exports: 'named',
+		},
+		{
+			format: 'umd',
+			file: 'dist/proxi.js',
+			name: 'Proxi',
+			exports: 'named',
+			globals: {
+				vue: 'Vue',
+			},
+		},
+	],
 };

@@ -15,7 +15,9 @@
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
+  "main": "dist/proxi.cjs.js",
+  "module": "dist/proxi.esm.js",
+  "unpkg": "dist/proxi.js",
   "scripts": {
     "build": "rollup -c --environment NODE_ENV:production",
     "dev-build": "rollup -cw",
