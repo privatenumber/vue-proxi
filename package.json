@@ -1,6 +1,6 @@
 {
   "name": "vue-proxi",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0",
   "description": "Tiny proxy component for Vue.js",
   "keywords": [
     "vue",
