@@ -7,7 +7,7 @@
 "><img src="https://badgen.net/bundlephobia/minzip/vue-proxi"></a>
 </h1>
 
-`<proxi>` is a tiny proxy component for [Vue.js](https://github.com/vuejs/vue). Whatever you add to it, it gets proxied to a target component!
+`<proxi>` is a tiny proxy component. Whatever you add to it gets proxied to a target component!
 
 ## :raising_hand: Why?
 - :recycle: **Uses Vue's Template API** Doesn't re-invent component communication!
