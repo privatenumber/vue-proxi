@@ -56,7 +56,7 @@ npm i vue-proxi
 		<tr>
 			<td valign="top"><pre lang="html">
 &lt;proxi
-    :key="key"
+    :proxi-key="key"
     :child-disabled="isDisabled"
     :child-label="label"
 /&gt;
@@ -99,7 +99,7 @@ export default {
 		<tr>
 			<td valign="top"><pre lang="html">
 &lt;proxi
-    :key="key"
+    :proxi-key="key"
     :class="['child-class', {
         disabled: isDisabled
     }]"
@@ -128,7 +128,7 @@ export default {
 		<tr>
 			<td valign="top"><pre lang="html">
 &lt;proxi
-    :key="key"
+    :proxi-key="key"
     :disabled="true"
 /&gt;
 	</pre></td>
@@ -159,7 +159,7 @@ export default {
 		<tr>
 			<td valign="top"><pre lang="html">
 &lt;proxi
-    :key="key"
+    :proxi-key="key"
     @click="handleClick"
     @custom-event="handleCustomEvent"
 /&gt;
