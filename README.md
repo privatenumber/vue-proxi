@@ -195,7 +195,7 @@ export default {
 ### Advanced
 This demo shows how a parent-child pair, RadioGroup and Radio, communicate using Proxi. Note how the two components only come together at usage.
 
-[![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/omqtfwpL/)
+[![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/svhjpx1g/)
 
 <details>
 	<summary>Usage</summary>
