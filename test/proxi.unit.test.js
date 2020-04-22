@@ -119,7 +119,7 @@ describe('Proxi', () => {
 		const usage = {
 			template: `
 				<proxi
-					:secret="key"
+					:proxi-key="key"
 					class="static-class"
 					:class="'computed-class'"
 				>
@@ -162,7 +162,7 @@ describe('Proxi', () => {
 		const usage = {
 			template: `
 				<proxi
-					:secret="key"
+					:proxi-key="key"
 					a="1"
 					b="2"
 					c="3"
@@ -213,7 +213,7 @@ describe('Proxi', () => {
 		const usage = {
 			template: `
 				<proxi
-					:secret="key"
+					:proxi-key="key"
 					a="1"
 					:b="2"
 					c="3"
@@ -265,7 +265,7 @@ describe('Proxi', () => {
 		const usage = {
 			template: `
 				<proxi
-					:secret="key"
+					:proxi-key="key"
 					a="1"
 					:b="2"
 					c="3"
@@ -316,7 +316,7 @@ describe('Proxi', () => {
 		const usage = {
 			template: `
 				<proxi
-					:secret="key"
+					:proxi-key="key"
 					:count="count"
 					:disabled="disabled"
 				>
@@ -369,7 +369,7 @@ describe('Proxi', () => {
 		const usage = {
 			template: `
 				<proxi
-					:secret="key"
+					:proxi-key="key"
 					@some-event="eventHandler"
 				>
 					<child-comp />
@@ -409,7 +409,7 @@ describe('Proxi', () => {
 		const usage = {
 			template: `
 				<proxi
-					:secret="key"
+					:proxi-key="key"
 					@click="eventHandler"
 				>
 					<child-comp ref="child" />
@@ -458,7 +458,7 @@ describe('Proxi', () => {
 			template: `
 			<div>
 				<proxi
-					:secret="key1"
+					:proxi-key="key1"
 					some-attr="123"
 				>
 					<slot />
@@ -489,7 +489,7 @@ describe('Proxi', () => {
 			template: `
 			<div>
 				<proxi
-					:secret="key2"
+					:proxi-key="key2"
 					some-attr="321"
 					:some-prop="100"
 				>

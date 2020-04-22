@@ -3,17 +3,17 @@ import { initProvide } from './utils';
 export default {
 	functional: true,
 	props: {
-		secret: {
+		proxiKey: {
 			type: [Symbol, String],
 			required: true,
 		},
 	},
 	render: (h, ctx) => {
-		const { secret } = ctx.props;
+		const { proxiKey } = ctx.props;
 
-		if (secret) {
+		if (proxiKey) {
 			const { data, parent } = ctx;
-			initProvide(parent, secret, { data });
+			initProvide(parent, proxiKey, { data });
 		}
 
 		return ctx.slots().default;

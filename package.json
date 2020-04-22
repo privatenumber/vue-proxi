@@ -1,13 +1,16 @@
 {
   "name": "vue-proxi",
   "version": "1.0.0-beta.1",
-  "description": "💠 Vue Child component proxy",
+  "description": "Vue component proxy",
   "keywords": [
     "vue",
     "component",
     "proxi",
     "parent-child",
-    "proxy"
+    "proxy",
+    "provide",
+    "inject",
+    "reactive"
   ],
   "files": [
     "dist"
