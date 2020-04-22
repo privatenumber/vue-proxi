@@ -1,6 +1,6 @@
 import { hasOwn, computeProps } from './utils';
 
-const injection = '__proxi';
+const injection = '_proxi_';
 
 const emptyObj = Object.freeze({});
 const baseProxi = {

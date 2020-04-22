@@ -13,7 +13,7 @@
 - :recycle: **Uses Vue's Template API** Doesn't re-invent component communication!
 - :muscle: **Provide/Inject on Steroids!** Familiar concepts, but super powered!
 - :boom: **Reactive** All injected data is reactive (unlike provide/inject)!
-- :hatched_chick: **Tiny** 766 B Gzipped!
+- :hatched_chick: **Tiny** 755 B Gzipped!
 
 ## :rocket: Install
 ```sh
