@@ -1,5 +1,5 @@
 <h1>
-	:diamond_shape_with_a_dot_inside: Proxi
+	proxi
 	<a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/v/vue-proxi"></a>
 	<a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/dm/vue-proxi"></a>
 	<a href="https://packagephobia.now.sh/result?p=vue-proxi"><img src="https://packagephobia.now.sh/badge?p=vue-proxi"></a>
@@ -10,11 +10,10 @@
 `<proxi>` is a tiny Vue proxy component. Whatever you add to it, it gets proxied to a target component!
 
 ## :raising_hand: Why?
-- :recycle: **Uses Vue's Template API:** Doesn't re-invent component communication!
-- :sparkling_heart: **Minimal setup:** Checkout the [3-step setup](#vertical_traffic_light-3-step-setup)!
-- :sparkles: **Like Provide/Inject:** Familiar concepts → shorter learning cuve!
-- :boom: **Reactive** All injected data is reactive!
-- :hatched_chick: **Tiny:** 766 B Gzipped!
+- :recycle: **Uses Vue's Template API** Doesn't re-invent component communication!
+- :muscle: **Provide/Inject on Steroids** Familiar concepts, but super powered!
+- :boom: **Reactive** All injected data is reactive (unlike provide/inject)!
+- :hatched_chick: **Tiny** 766 B Gzipped!
 
 ## :rocket: Install
 ```sh
