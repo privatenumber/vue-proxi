@@ -1,5 +1,5 @@
 module.exports = {
 	moduleNameMapper: {
-		'vue-voodoo-doll': '<rootDir>/src/index',
+		'vue-proxi': '<rootDir>/src/index',
 	},
 };
