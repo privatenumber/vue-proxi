@@ -47,10 +47,12 @@ npm i vue-proxi
        - _eg. `v-on="$$.listeners"` or `v-on="{ ...$listeners, ...$$.listeners }"`_
 
 ## :man_teacher: Demos
+Some quick demos to get you started!
 
 <details>
-	<summary><strong>Inheriting props</strong></summary>
+	<summary><strong>Inheriting props?</strong></summary>
 	<br>
+	When you declare a prop, it filters it out from the attributes list (<code>$$.attrs</code>) to be available directly on the view model (<code>this.propName</code>) and the props list (<code>$$.props</code>).
 	<table>
 		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
 		<tr>
@@ -92,14 +94,16 @@ export default {
 </details>
 
 <details>
-	<summary><strong>Inheriting class</strong></summary>
+	<summary><strong>Inheriting the class?</strong></summary>
 	<br>
+	Both the static class and computed class are consolidated into <code>$$.class</code> for you to easily attach to any element.
 	<table>
 		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
 		<tr>
 			<td valign="top"><pre lang="html">
 &lt;proxi
     :proxi-key="key"
+    class="static-class"
     :class="['child-class', {
         disabled: isDisabled
     }]"
@@ -121,8 +125,12 @@ export default {
 </details>
 
 <details>
-	<summary><strong>Inheriting attrs</strong></summary>
+	<summary><strong>Inheriting attrs?</strong></summary>
 	<br>
+	<ul>
+		<li>Looking to inherit a specific attribute? Just pick it out from <code>$$.attrs</code></li>
+		<li>Looking to inherit all attributes? Throw <code>$$.attrs</code> into <code>v-bind</code></li>
+	</ul>
 	<table>
 		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
 		<tr>
@@ -151,8 +159,9 @@ export default {
 </details>
 
 <details>
-	<summary><strong>Inheriting listeners</strong></summary>
+	<summary><strong>Inheriting listeners?</strong></summary>
 	<br>
+	All event listeners are in <code>$$.listeners</code> to throw right into <code>v-on</code>!
 	<table>
 		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
 		<tr>
