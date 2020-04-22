@@ -1,33 +1,199 @@
-# :ghost: Voodoo Doll
-<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/v/vue-voodoo-doll"></a>
-<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/dm/vue-voodoo-doll"></a>
-<a href="https://packagephobia.now.sh/result?p=vue-voodoo-doll"><img src="https://packagephobia.now.sh/badge?p=vue-voodoo-doll"></a>
+<h1>
+	:ghost: Voodoo Doll
+	<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/v/vue-voodoo-doll"></a>
+	<a href="https://npm.im/vue-voodoo-doll"><img src="https://badgen.net/npm/dm/vue-voodoo-doll"></a>
+	<a href="https://packagephobia.now.sh/result?p=vue-voodoo-doll"><img src="https://packagephobia.now.sh/badge?p=vue-voodoo-doll"></a>
+	<a href="https://bundlephobia.com/result?p=vue-voodoo-doll
+"><img src="https://badgen.net/bundlephobia/minzip/vue-voodoo-doll"></a>
+</h1>
 
-> Add props / event-handlers on `<voodoo-doll>` to proxy them to a distant child component
+`<voodoo-doll>` is a Vue proxy component.
+Whatever you add to it, it gets proxied to a target component. *Just like a Voodoo Doll.*
 
 ## :raising_hand: Why?
-Vue offers [provide/inject](https://vuejs.org/v2/api/#provide-inject) to communicate with a child component that's passed into a slot. This non-reactive, imperative API might suffice for simple cases, but when data needs to flow bi-directionally or be reactive, you might start to reinvent new ways for components to communicate. This could get messy and pollute your SFC with irrelevant noise.
-
-_Voodoo Doll solves this by offering a template API to directly interface with a component outside your SFC! :ghost:_
+- :recycle: **Uses Vue's Template API:** Doesn't re-invent component communication!
+- :sparkling_heart: **Minimal setup:** Checkout the [3-step setup](#vertical_traffic_light-3-step-setup)!
+- :sparkles: **Like Provide/Inject:** Familiar concepts → shorter learning cuve!
+- :boom: **Reactive** All injected data is reactive!
+- :hatched_chick: **Tiny:** 766 B Gzipped!
 
 ## :rocket: Install
 ```sh
 npm i vue-voodoo-doll
 ```
 
+## :vertical_traffic_light: 3-step Setup
+#### 1. :woman: Parent component
+   - Import and register `import VoodooDoll from 'vue-voodoo-doll'`
+   - Insert anywhere in your template:
+      - `<voodoo-doll :secret="key" [... attr / :prop / @listener]>`
+      - _`key` is used to communicate with the Child. Use a unique string value or a `Symbol`_
+#### 2. :baby: Child component
+   - Import the VoodooMixin: `import { VoodooMixin } from 'vue-voodoo-doll'`
+   - Register the mixin:
+     ```js
+     mixins: [
+     	VoodooMixin({
+     		from: key, // from Step 1
+     		props: ['propName', ...] // Becomes available on VM eg. `this.propName`
+     	})
+     ]
+     ```
+#### 3. :white_check_mark: Done!
+   - The injected data is all available in `this.$$`
+     - `this.$$.class`: Class
+     - `this.$$.props`: Props _(Automatically bound to VM)_
+     - `this.$$.attrs`: Attributes
+       - _eg. `v-bind="$$.attrs"` or `v-bind="{ ...$attrs, ...$$.attrs }"`_
+     - `this.$$.listeners`: Event listeners _(Automatically bound to VM)_
+       - _eg. `v-on="$$.listeners"` or `v-on="{ ...$listeners, ...$$.listeners }"`_
 
-## :beginner: Usage [![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/0szwc2uh/)
-The following demo shows you how to set up a parent-child pair to communicate using Voodoo Doll.
-Note:
-- The parent uses the `<voodoo-doll>` component with a secret key to wrap `<slot>`
-  - > The Voodoo magic only applies to its children!
-- The child uses the `VoodooMixin` mixin with the same key to bind to the parent's Voodoo Doll
-  - Declare the `props` array to bind given attributes to the view model context
-- The child can the Voodo via `this.$$` (`attrs`, `props`, `class`, `listeners`)
-- The two components only come together at usage
+## :man_teacher: Demos
+
+<details>
+	<summary><strong>Inheriting props</strong></summary>
+	<br>
+	<table>
+		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
+		<tr>
+			<td valign="top"><pre lang="html">
+&lt;voodoo-doll
+    :key="key"
+    :child-disabled="isDisabled"
+    :child-label="label"
+/&gt;
+	</pre></td>
+			<td><pre lang="html">
+&lt;label&gt;
+    {{ label }}
+    &lt;input
+        type="checkbox"
+        :disabled="childDisabled"
+    &gt;
+&lt;/label&gt;
+	</pre><hr><pre lang="js">
+export default {
+  mixins: [
+    VoodooMixin({
+      from: key,
+      props: [
+        'childDisabled',
+        'childLabel'
+      ]
+    })
+  ],
+  computed: {
+    label() {
+      return this.childLabel + ':';
+    }
+  }
+};
+	</pre></td>
+		</tr>
+	</table>
+</details>
+
+<details>
+	<summary><strong>Inheriting class</strong></summary>
+	<br>
+	<table>
+		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
+		<tr>
+			<td valign="top"><pre lang="html">
+&lt;voodoo-doll
+    :key="key"
+    :class="['child-class', {
+        disabled: isDisabled
+    }]"
+/&gt;
+	</pre></td>
+			<td><pre lang="html">
+&lt;div :class="$$.class"&gt;
+    Child
+&lt;/div&gt;
+</pre><hr><pre lang="js">
+export default {
+    mixins: [
+        VoodooMixin({ from: key })
+    ],
+};
+	</pre></td>
+		</tr>
+	</table>
+</details>
+
+<details>
+	<summary><strong>Inheriting attrs</strong></summary>
+	<br>
+	<table>
+		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
+		<tr>
+			<td valign="top"><pre lang="html">
+&lt;voodoo-doll
+    :key="key"
+    :disabled="true"
+/&gt;
+	</pre></td>
+			<td><pre lang="html">
+&lt;div
+    :disabled="$$.attrs.disabled"
+
+    v-bind="$$.attrs"
+&gt;
+    Child
+&lt;/div&gt;
+</pre><hr><pre lang="js">
+export default {
+    mixins: [
+        VoodooMixin({ from: key })
+    ],
+};
+	</pre></td>
+		</tr>
+	</table>
+</details>
+
+<details>
+	<summary><strong>Inheriting listeners</strong></summary>
+	<br>
+	<table>
+		<tr><th>:woman: Parent</th><th>:baby: Child</th></tr>
+		<tr>
+			<td valign="top"><pre lang="html">
+&lt;voodoo-doll
+    :key="key"
+    @click="handleClick"
+    @custom-event="handleCustomEvent"
+/&gt;
+	</pre></td>
+			<td><pre lang="html">
+&lt;button v-on="$$.listeners"&gt;
+    Child
+&lt;/button&gt;
+</pre><hr><pre lang="js">
+export default {
+    mixins: [
+        VoodooMixin({ from: key })
+    ],
+    mounted() {
+        // Listeners are automatically bound to VM
+        this.$emit('custom-event', 'Mounted!');
+    }
+};
+	</pre></td>
+		</tr>
+	</table>
+</details>
 
 
-### Usage
+### Advanced
+This demo shows how a parent-child pair, RadioGroup and Radio, communicate using Voodoo Doll. Note how the two components only come together at usage.
+
+[![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/omqtfwpL/)
+
+<details>
+	<summary>Usage</summary>
+
 ```vue
 <template>
 	<div>
@@ -52,8 +218,11 @@ export default {
 };
 </script>
 ```
+</details>
 
-### Parent: _RadioGroup.vue_
+<details>
+	<summary>Parent: <i>RadioGroup.vue</i></summary>
+
 ```vue
 <template>
 	<div>
@@ -87,8 +256,13 @@ export default {
 }
 </script>
 ```
+</details>
 
-### Child: _Radio.vue_
+
+<details>
+	<summary>Child: <i>Radio.vue</i></summary>
+
+
 ```vue
 <template>
 	<label>
@@ -139,6 +313,7 @@ export default {
 };
 </script>
 ```
+</details>
 
 
 ## :family: Related
