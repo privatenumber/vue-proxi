@@ -135,7 +135,6 @@ export default {
 			<td><pre lang="html">
 &lt;div
     :disabled="$$.attrs.disabled"
-
     v-bind="$$.attrs"
 &gt;
     Child
