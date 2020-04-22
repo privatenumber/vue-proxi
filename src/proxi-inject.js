@@ -1,9 +1,9 @@
 import { hasOwn, computeProps } from './utils';
 
-const injection = '__voodooInjection';
+const injection = '__proxi';
 
 const emptyObj = Object.freeze({});
-const baseVoodoo = {
+const baseProxi = {
 	class: undefined,
 	listeners: emptyObj,
 	attrs: emptyObj,
@@ -37,9 +37,9 @@ export default ({ from, props = [] } = {}) => ({
 		}, {
 			$$() {
 				const { data } = this[injection] || {};
-				const voodoo = Object.create(baseVoodoo);
-				return !data ? voodoo : Object.assign(
-					voodoo,
+				const proxi = Object.create(baseProxi);
+				return !data ? proxi : Object.assign(
+					proxi,
 					{
 						class: (data.staticClass || data.class) ? [data.staticClass, data.class] : undefined,
 						listeners: data.on,
