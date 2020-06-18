@@ -1,10 +1,4 @@
-<h1>
-	Proxi
-	<a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/v/vue-proxi"></a>
-	<a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/dm/vue-proxi"></a>
-	<a href="https://packagephobia.now.sh/result?p=vue-proxi"><img src="https://packagephobia.now.sh/badge?p=vue-proxi"></a>
-	<a href="https://bundlephobia.com/result?p=vue-proxi"><img src="https://badgen.net/bundlephobia/minzip/vue-proxi"></a>
-</h1>
+# Proxi <a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/v/vue-proxi"></a> <a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/dm/vue-proxi"></a> <a href="https://packagephobia.now.sh/result?p=vue-proxi"><img src="https://packagephobia.now.sh/badge?p=vue-proxi"></a> <a href="https://bundlephobia.com/result?p=vue-proxi"><img src="https://badgen.net/bundlephobia/minzip/vue-proxi"></a>
 
 `<proxi>` is a tiny proxy component. Whatever you add to it gets proxied to a target component!
 
