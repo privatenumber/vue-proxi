@@ -1,0 +1,7 @@
+[
+  {
+    "path": "dist/proxi.cjs.js",
+    "limit": "1 KB",
+    "webpack": false
+  }
+]
