@@ -1,11 +1,4 @@
-<h1>
-	Proxi
-	<a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/v/vue-proxi"></a>
-	<a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/dm/vue-proxi"></a>
-	<a href="https://packagephobia.now.sh/result?p=vue-proxi"><img src="https://packagephobia.now.sh/badge?p=vue-proxi"></a>
-	<a href="https://bundlephobia.com/result?p=vue-proxi
-"><img src="https://badgen.net/bundlephobia/minzip/vue-proxi"></a>
-</h1>
+# Proxi <a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/v/vue-proxi"></a> <a href="https://npm.im/vue-proxi"><img src="https://badgen.net/npm/dm/vue-proxi"></a> <a href="https://packagephobia.now.sh/result?p=vue-proxi"><img src="https://packagephobia.now.sh/badge?p=vue-proxi"></a> <a href="https://bundlephobia.com/result?p=vue-proxi"><img src="https://badgen.net/bundlephobia/minzip/vue-proxi"></a>
 
 `<proxi>` is a tiny proxy component. Whatever you add to it gets proxied to a target component!
 
@@ -195,7 +188,7 @@ export default {
 ### Advanced
 This demo shows how a parent-child pair, RadioGroup and Radio, communicate using Proxi. Note how the two components only come together at usage.
 
-[![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/svhjpx1g/)
+[![JSFiddle Demo](https://flat.badgen.net/badge/JSFiddle/Open%20Demo/blue)](https://jsfiddle.net/hirokiosame/akwfm1sp/)
 
 <details>
 	<summary>Usage</summary>
