@@ -112,7 +112,7 @@ describe('Error handling - ProxiInject', () => {
 		const ChildComp = {
 			mixins: [ProxiInject({
 				from: key,
-				props: ['disabled']
+				props: ['disabled'],
 			})],
 			props: ['disabled'],
 			template: '<div>ChildComp</div>',
@@ -475,7 +475,6 @@ describe('Proxi', () => {
 		wrapper.findComponent({ ref: 'child' }).vm.$el.click();
 		expect(eventHandler).toBeCalled();
 	});
-
 
 	test('Crossing proxis', () => {
 		const key1 = Symbol('key');

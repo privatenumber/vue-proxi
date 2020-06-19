@@ -44,7 +44,7 @@ export default ({ from, props = [] } = {}) => ({
 						class: (data.staticClass || data.class) ? [data.staticClass, data.class] : undefined,
 						listeners: data.on,
 					},
-					computeProps(props, Object.assign({}, data.attrs))
+					computeProps(props, Object.assign({}, data.attrs)),
 				);
 			},
 		},
