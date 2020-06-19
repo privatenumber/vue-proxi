@@ -20,7 +20,7 @@ describe('Error handling - Proxi', () => {
 
 		const wrapper = mount(usage);
 		expect(warnHandler).toBeCalled();
-		expect(wrapper.isEmpty()).toBe(true);
+		expect(wrapper.element.children.length).toBe(0);
 	});
 
 	test('No key - content', () => {
@@ -183,7 +183,7 @@ describe('Proxi', () => {
 		};
 
 		const wrapper = mount(usage);
-		const child = wrapper.find({ ref: 'child' });
+		const child = wrapper.findComponent({ ref: 'child' });
 		expect(child.attributes('class')).toBe('child-static-class static-class computed-class');
 	});
 
@@ -471,10 +471,8 @@ describe('Proxi', () => {
 			},
 		};
 
-		const wrapper = mount(usage, {
-			attachToDocument: true,
-		});
-		wrapper.find({ ref: 'child' }).vm.$el.click();
+		const wrapper = mount(usage);
+		wrapper.findComponent({ ref: 'child' }).vm.$el.click();
 		expect(eventHandler).toBeCalled();
 	});
 
@@ -570,10 +568,10 @@ describe('Proxi', () => {
 
 		const wrapper = mount(usage);
 
-		const child1 = wrapper.find({ ref: 'child-1' });
+		const child1 = wrapper.findComponent({ ref: 'child-1' });
 		expect(child1.attributes('some-attr')).toBe('123');
 
-		const child2 = wrapper.find({ ref: 'child-2' });
+		const child2 = wrapper.findComponent({ ref: 'child-2' });
 		expect(child2.attributes('some-attr')).toBe('321');
 		expect(child2.text()).toBe('Child 100');
 	});
