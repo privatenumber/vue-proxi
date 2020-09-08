@@ -1,14 +1,17 @@
-const isTest = process.env.NODE_ENV === 'test';
-
 module.exports = {
 	presets: [
 		['@babel/preset-env', {
 			loose: true,
-
-			...(isTest ? {
-				useBuiltIns: 'usage',
-				corejs: 3,
-			} : null)
 		}]
 	],
+	env: {
+		test: {
+			presets: [
+				['@babel/preset-env', {
+					useBuiltIns: 'usage',
+					corejs: 3,
+				}],
+			]
+		}
+	}
 };
