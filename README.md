@@ -23,18 +23,22 @@ npm i vue-proxi
    - Import the Proxi Inject mixin: `import { ProxiInject } from 'vue-proxi'`
    - Register the mixin:
 
-	```js
-	{
-		// ...,
+```js
+export default {
+    // ...,
 
-		mixins: [
-			ProxiInject({
-				from: key, // from Step 1
-				props: ['propName', ...] // Becomes available on VM eg. `this.propName`
-			})
-		]
-	}
-	```
+    mixins: [
+        ProxiInject({
+            from: key, // from Step 1
+            props: [
+                // Becomes available on VM eg. `this.propName`
+                'propName'
+                // ...
+            ]
+        })
+    ]
+}
+```
 #### 3. :white_check_mark: Done!
    - The injected data is all available in `this.$$`
      - `this.$$.class`: Class
