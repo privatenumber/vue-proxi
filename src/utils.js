@@ -7,7 +7,7 @@ export const hasOwn = (object, property) => hasOwnProperty.call(object, property
 const camelizeRE = /-(\w)/g;
 export const camelize = string => string.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''));
 
-export function initProvide(parent, key, object) {
+export const initProvide = (parent, key, object) => {
 	if (!parent._provided) {
 		parent._provided = {};
 	}
@@ -17,10 +17,11 @@ export function initProvide(parent, key, object) {
 	} else {
 		parent._provided[key] = Vue.observable(object);
 	}
-}
+};
 
-export function computeProps(propsDecl, attributes) {
+export const computeProps = (propsDecl, attributes) => {
 	const props = {};
+
 	for (const attribute in attributes) {
 		if (hasOwn(attributes, attribute)) {
 			const camelized = camelize(attribute);
@@ -31,5 +32,6 @@ export function computeProps(propsDecl, attributes) {
 			}
 		}
 	}
+
 	return { attrs: attributes, props };
-}
+};

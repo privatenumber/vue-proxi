@@ -10,13 +10,14 @@ const baseProxi = {
 	props: emptyObject,
 };
 
-export default ({ from, props = [] } = {}) => ({
+export const ProxiInject = ({ from, props = [] } = {}) => ({
 	inject: {
 		[injection]: {
 			from,
 			default: undefined,
 		},
 	},
+
 	created() {
 		const { data } = this[injection] || {};
 		if (data) {
@@ -51,7 +52,12 @@ export default ({ from, props = [] } = {}) => ({
 								),
 								listeners: data.on,
 							},
-							computeProps(props, Object.assign({}, data.attrs)),
+							computeProps(
+								props,
+
+								// eslint-disable-next-line prefer-object-spread
+								Object.assign({}, data.attrs),
+							),
 						)
 						: proxi
 				);

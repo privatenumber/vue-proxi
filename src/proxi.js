@@ -1,6 +1,6 @@
 import { initProvide } from './utils.js';
 
-export default {
+export const Proxi = {
 	functional: true,
 	props: {
 		proxiKey: {
