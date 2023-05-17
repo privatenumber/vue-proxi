@@ -6,7 +6,7 @@ import {
 } from 'vitest';
 import Vue from 'vue';
 import { mount } from '@vue/test-utils';
-import Proxi, { ProxiInject } from '..';
+import Proxi, { ProxiInject } from '../src/index.js';
 
 describe('Error handling - Proxi', () => {
 	test('No key - empty', () => {
@@ -579,5 +579,59 @@ describe('Proxi', () => {
 		const child2 = wrapper.findComponent({ ref: 'child-2' });
 		expect(child2.attributes('some-attr')).toBe('321');
 		expect(child2.text()).toBe('Child 100');
+	});
+
+	test('Shared parent Vue 2.7 bug', async () => {
+		const key = Symbol('key');
+
+		const Child = {
+			mixins: [
+				ProxiInject({
+					from: key,
+				}),
+			],
+			template: '<div v-bind="$$.attrs"></div>',
+		};
+
+		const Parent = {
+			template: `
+			<proxi
+				:proxi-key="key"
+				v-bind="$attrs"
+			>
+				<slot />
+			</proxi>
+			`,
+			components: {
+				Proxi,
+			},
+			data() {
+				return { key };
+			},
+		};
+
+		const usage = {
+			template: `
+				<div>
+					<parent data="123">
+						<child />
+					</parent>
+					<parent data="321">
+						<child />
+					</parent>
+				</div>
+			`,
+			components: {
+				Parent,
+				Child,
+			},
+		};
+
+		const wrapper = mount(usage);
+
+		await Vue.nextTick();
+
+		const html = wrapper.html().replaceAll(/\n|\s{2,}/g, '');
+		expect(html).toBe('<div><div data="123"></div><div data="321"></div></div>');
 	});
 });

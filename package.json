@@ -38,7 +38,7 @@
 	"lint-staged": {
 		"*.{js,ts,vue}": [
 			"eslint --cache",
-			"pnpm test"
+			"vitest related --run"
 		]
 	},
 	"devDependencies": {
