@@ -5,6 +5,7 @@ export const hasOwn = (object, property) => hasOwnProperty.call(object, property
 
 // From: https://github.com/vuejs/vue/blob/6fe07ebf5ab3fea1860c59fe7cdd2ec1b760f9b0/src/shared/util.js#L165
 const camelizeRE = /-(\w)/g;
+// eslint-disable-next-line unicorn/prefer-string-replace-all
 export const camelize = string => string.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''));
 
 export const initProvide = (parent, key, object) => {
