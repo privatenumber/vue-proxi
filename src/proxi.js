@@ -1,4 +1,4 @@
-import { initProvide } from './utils';
+import { initProvide } from './utils.js';
 
 export default {
 	functional: true,
@@ -8,14 +8,14 @@ export default {
 			required: true,
 		},
 	},
-	render: (h, ctx) => {
-		const { proxiKey } = ctx.props;
+	render: (h, context) => {
+		const { proxiKey } = context.props;
 
 		if (proxiKey) {
-			const { data, parent } = ctx;
+			const { data, parent } = context;
 			initProvide(parent, proxiKey, { data });
 		}
 
-		return ctx.slots().default;
+		return context.slots().default;
 	},
 };

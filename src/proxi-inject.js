@@ -1,13 +1,13 @@
-import { hasOwn, computeProps } from './utils';
+import { hasOwn, computeProps } from './utils.js';
 
 const injection = '_proxi_';
 
-const emptyObj = Object.freeze({});
+const emptyObject = Object.freeze({});
 const baseProxi = {
 	class: undefined,
-	listeners: emptyObj,
-	attrs: emptyObj,
-	props: emptyObj,
+	listeners: emptyObject,
+	attrs: emptyObject,
+	props: emptyObject,
 };
 
 export default ({ from, props = [] } = {}) => ({
@@ -20,31 +20,40 @@ export default ({ from, props = [] } = {}) => ({
 	created() {
 		const { data } = this[injection] || {};
 		if (data) {
-			for (const ev in data.on) {
-				if (hasOwn(data.on, ev)) {
-					this.$on(ev, data.on[ev]);
+			for (const event in data.on) {
+				if (hasOwn(data.on, event)) {
+					this.$on(event, data.on[event]);
 				}
 			}
 		}
 	},
 
+	// eslint-disable-next-line unicorn/no-array-reduce
 	computed: props.reduce(
-		(obj, prop) => {
-			obj[prop] = function () {
-				return this.$$.props[prop];
+		(object, property) => {
+			object[property] = function () {
+				return this.$$.props[property];
 			};
-			return obj;
+			return object;
 		}, {
 			$$() {
 				const { data } = this[injection] || {};
 				const proxi = Object.create(baseProxi);
-				return !data ? proxi : Object.assign(
-					proxi,
-					{
-						class: (data.staticClass || data.class) ? [data.staticClass, data.class] : undefined,
-						listeners: data.on,
-					},
-					computeProps(props, Object.assign({}, data.attrs)),
+				return (
+					data
+						? Object.assign(
+							proxi,
+							{
+								class: (
+									(data.staticClass || data.class)
+										? [data.staticClass, data.class]
+										: undefined
+								),
+								listeners: data.on,
+							},
+							computeProps(props, Object.assign({}, data.attrs)),
+						)
+						: proxi
 				);
 			},
 		},
