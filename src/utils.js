@@ -8,14 +8,30 @@ const camelizeRE = /-(\w)/g;
 export const camelize = (str) => str.replace(camelizeRE, (_, c) => (c ? c.toUpperCase() : ''));
 
 export function initProvide(parent, key, obj) {
-	if (!parent._provided) {
+	/**
+	 * New behavior introduced in 2.7.0 to always use the parent provide
+	 * if not specified by the component.
+	 * https://github.com/vuejs/vue/blob/v2.7.0/src/v3/apiInject.ts#L26
+	 */
+	if (parent._provided) {
+		const provides = parent._provided;
+		const parentProvides = parent.$parent && parent.$parent._provided;
+		if (provides === parentProvides) {
+			parent._provided = Object.create(parentProvides);
+		}
+	} else {
 		parent._provided = {};
 	}
 
-	if (!parent._provided[key]) {
-		parent._provided[key] = Vue.observable(obj);
+	const providedEntry = parent._provided[key];
+	if (providedEntry) {
+		for (const prop in obj) {
+			if (hasOwn(obj, prop)) {
+				Vue.set(providedEntry, prop, obj[prop]);
+			}
+		}
 	} else {
-		Object.assign(parent._provided[key], obj);
+		parent._provided[key] = Vue.observable(obj);
 	}
 }
 
