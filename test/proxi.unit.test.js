@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import Vue from 'vue';
 import { mount } from '@vue/test-utils';
 import Proxi, { ProxiInject } from 'vue-proxi';
