@@ -1,6 +1,6 @@
 {
 	"name": "vue-proxi",
-	"version": "1.0.0",
+	"version": "0.0.0-semantic-release",
 	"description": "Tiny proxy component for Vue.js",
 	"keywords": [
 		"vue",
@@ -13,11 +13,12 @@
 		"reactive"
 	],
 	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/privatenumber/vue-proxi.git"
+	"repository": "privatenumber/vue-proxi",
+	"funding": "https://github.com/privatenumber/vue-proxi?sponsor=1",
+	"author": {
+		"name": "Hiroki Osame",
+		"email": "hiroki.osame@gmail.com"
 	},
-	"author": "Hiroki Osame <hiroki.osame@gmail.com>",
 	"files": [
 		"dist"
 	],
@@ -40,10 +41,6 @@
 			"pnpm test"
 		]
 	},
-	"bugs": {
-		"url": "https://github.com/privatenumber/vue-proxi/issues"
-	},
-	"homepage": "https://github.com/privatenumber/vue-proxi#readme",
 	"devDependencies": {
 		"@babel/core": "^7.21.8",
 		"@babel/preset-env": "^7.21.5",
