@@ -19,17 +19,21 @@
   "module": "dist/proxi.esm.js",
   "unpkg": "dist/proxi.js",
   "scripts": {
+    "prepare": "simple-git-hooks",
     "build": "rollup -c --environment NODE_ENV:production",
     "dev-build": "rollup -cw",
     "dev": "jest --watchAll",
     "test": "jest",
     "lint": "eslint --ext js,vue ."
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "npm run build && npm test"
-    }
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": [
+      "eslint",
+      "pnpm test"
+    ]
   },
   "repository": {
     "type": "git",
@@ -52,12 +56,13 @@
     "eslint": "^7.2.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-plugin-import": "^2.21.2",
-    "husky": "^4.2.3",
     "jest": "^26.0.1",
+    "lint-staged": "^13.2.2",
     "rollup": "^2.17.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-filesize": "^9.0.1",
     "rollup-plugin-terser": "^6.1.0",
+    "simple-git-hooks": "^2.8.1",
     "vue": "^2.6.11",
     "vue-template-compiler": "^2.6.11"
   }
