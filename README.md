@@ -55,7 +55,7 @@ Some quick demos to get you started!
     :child-disabled="isDisabled"
     :child-label="label"
 /&gt;
-	</pre></td>
+</pre></td>
 			<td><pre lang="html">
 &lt;label&gt;
     {{ label }}
@@ -81,7 +81,7 @@ export default {
     }
   }
 };
-	</pre></td>
+</pre></td>
 		</tr>
 	</table>
 </details>
@@ -101,7 +101,7 @@ export default {
         disabled: isDisabled
     }]"
 /&gt;
-	</pre></td>
+</pre></td>
 			<td><pre lang="html">
 &lt;div :class="$$.class"&gt;
     Child
@@ -112,7 +112,7 @@ export default {
         ProxiInject({ from: key })
     ],
 };
-	</pre></td>
+</pre></td>
 		</tr>
 	</table>
 </details>
@@ -132,7 +132,7 @@ export default {
     :proxi-key="key"
     :disabled="true"
 /&gt;
-	</pre></td>
+</pre></td>
 			<td><pre lang="html">
 &lt;div
     :disabled="$$.attrs.disabled"
@@ -164,7 +164,7 @@ export default {
     @click="handleClick"
     @custom-event="handleCustomEvent"
 /&gt;
-	</pre></td>
+</pre></td>
 			<td><pre lang="html">
 &lt;button v-on="$$.listeners"&gt;
     Child
@@ -179,7 +179,7 @@ export default {
         this.$emit('custom-event', 'Mounted!');
     }
 };
-	</pre></td>
+</pre></td>
 		</tr>
 	</table>
 </details>
