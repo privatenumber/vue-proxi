@@ -1,13 +1,16 @@
-/**
- * @jest-environment jsdom
- */
+import {
+	describe,
+	test,
+	expect,
+	vi,
+} from 'vitest';
 import Vue from 'vue';
 import { mount } from '@vue/test-utils';
-import Proxi, { ProxiInject } from 'vue-proxi';
+import Proxi, { ProxiInject } from '..';
 
 describe('Error handling - Proxi', () => {
 	test('No key - empty', () => {
-		const warnHandler = jest.fn();
+		const warnHandler = vi.fn();
 		Vue.config.warnHandler = warnHandler;
 
 		const usage = {
@@ -27,7 +30,7 @@ describe('Error handling - Proxi', () => {
 	});
 
 	test('No key - content', () => {
-		const warnHandler = jest.fn();
+		const warnHandler = vi.fn();
 		Vue.config.warnHandler = warnHandler;
 
 		const usage = {
@@ -54,7 +57,7 @@ describe('Error handling - Proxi', () => {
 
 describe('Error handling - ProxiInject', () => {
 	test('No Proxi injection - fail silently', () => {
-		const warnHandler = jest.fn();
+		const warnHandler = vi.fn();
 		Vue.config.warnHandler = warnHandler;
 
 		const usage = {
@@ -72,7 +75,7 @@ describe('Error handling - ProxiInject', () => {
 	});
 
 	test('No key - should warn', () => {
-		const warnHandler = jest.fn();
+		const warnHandler = vi.fn();
 		Vue.config.warnHandler = warnHandler;
 
 		const ChildComp = {
@@ -108,7 +111,7 @@ describe('Error handling - ProxiInject', () => {
 	});
 
 	test('Colliding props - should warn', () => {
-		const warnHandler = jest.fn();
+		const warnHandler = vi.fn();
 		Vue.config.warnHandler = warnHandler;
 
 		const key = Symbol('key');
@@ -192,7 +195,7 @@ describe('Proxi', () => {
 
 	test('Apply attributes', () => {
 		const key = Symbol('key');
-		const mounted = jest.fn();
+		const mounted = vi.fn();
 
 		const ChildComp = {
 			mixins: [ProxiInject({
@@ -240,7 +243,7 @@ describe('Proxi', () => {
 
 	test('Apply props', () => {
 		const key = Symbol('key');
-		const mounted = jest.fn();
+		const mounted = vi.fn();
 
 		const ChildComp = {
 			mixins: [
@@ -292,7 +295,7 @@ describe('Proxi', () => {
 
 	test('Proxy props to vm', () => {
 		const key = Symbol('key');
-		const mounted = jest.fn();
+		const mounted = vi.fn();
 
 		const ChildComp = {
 			mixins: [
@@ -396,7 +399,7 @@ describe('Proxi', () => {
 
 	test('Bind event-handlers to vm', () => {
 		const key = Symbol('key');
-		const eventHandler = jest.fn();
+		const eventHandler = vi.fn();
 
 		const ChildComp = {
 			mixins: [
@@ -440,7 +443,7 @@ describe('Proxi', () => {
 
 	test('Pass down event-handlers to vm', () => {
 		const key = Symbol('key');
-		const eventHandler = jest.fn();
+		const eventHandler = vi.fn();
 
 		const ChildComp = {
 			mixins: [
