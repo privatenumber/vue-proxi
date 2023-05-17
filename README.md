@@ -195,26 +195,35 @@ This demo shows how a parent-child pair, RadioGroup and Radio, communicate using
 
 ```vue
 <template>
-	<div>
-		<radio-group v-model="selected">
-			<radio label="Apples" value="apples" />
-			<radio label="Oranges" value="oranges" />
-			<radio label="Bananas" value="bananas" />
-		</radio-group>
-		<div>
-			Selected: {{ selected }}
-		</div>
-	</div>
+    <div>
+        <radio-group v-model="selected">
+            <radio
+                label="Apples"
+                value="apples"
+            />
+            <radio
+                label="Oranges"
+                value="oranges"
+            />
+            <radio
+                label="Bananas"
+                value="bananas"
+            />
+        </radio-group>
+        <div>
+            Selected: {{ selected }}
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
-	data() {
-		return {
-			selected: [],
-		};
-	},
-};
+    data() {
+        return {
+            selected: []
+        }
+    }
+}
 </script>
 ```
 </details>
@@ -224,34 +233,34 @@ export default {
 
 ```vue
 <template>
-	<div>
-		<proxi
-			:proxi-key="key"
-			:checkedItems="value"
-			@update="$emit('input', $event)"
-		>
-			<slot />
-		</proxi>
-	</div>
+    <div>
+        <proxi
+            :proxi-key="key"
+            :checked-items="value"
+            @update="$emit('input', $event)"
+        >
+            <slot />
+        </proxi>
+    </div>
 </template>
 
 <script>
-import Proxi from 'vue-proxi';
+import Proxi from 'vue-proxi'
 
 export default {
-	components: {
-		Proxi,
-	},
+    components: {
+        Proxi
+    },
 
-	props: ['value'],
+    props: ['value'],
 
-	data() {
-		return {
-			// Same idea as provide/inject
-			// Use a Symbol for security
-			key: 'radios',
-		};
-	},
+    data() {
+        return {
+            // Same idea as provide/inject
+            // Use a Symbol for security
+            key: 'radios'
+        }
+    }
 }
 </script>
 ```
@@ -264,52 +273,52 @@ export default {
 
 ```vue
 <template>
-	<label>
-		<input
-			type="checkbox"
-			@click="onClick"
-			:checked="isChecked"
-		>
-		{{ label }}
-	</label>
+    <label>
+        <input
+            type="checkbox"
+            :checked="isChecked"
+            @click="onClick"
+        >
+        {{ label }}
+    </label>
 </template>
 
 <script>
-import { ProxiInject } from 'vue-proxi';
+import { ProxiInject } from 'vue-proxi'
 
 export default {
-	mixins: [
-		ProxiInject({
-			// Same key as parent
-			from: 'radios',
+    mixins: [
+        ProxiInject({
+            // Same key as parent
+            from: 'radios',
 
-			// Declare props that can be injected in
-			// Only array supported for now
-			props: ['checkedItems'],
-		})
-	],
+            // Declare props that can be injected in
+            // Only array supported for now
+            props: ['checkedItems']
+        })
+    ],
 
-	props: {
-		label: String,
-		value: null
-	},
+    props: {
+        label: String,
+        value: null
+    },
 
-	computed: {
-		isChecked() {
-			return this.checkedItems.includes(this.value);
-		}
-	},
+    computed: {
+        isChecked() {
+            return this.checkedItems.includes(this.value)
+        }
+    },
 
-	methods: {
-		onClick() {
-			if (this.isChecked) {
-				this.$emit('update', this.checkedItems.filter(i => i !== this.value));
-			} else {
-				this.$emit('update', [...this.checkedItems, this.value]);
-			}
-		}
-	}
-};
+    methods: {
+        onClick() {
+            if (this.isChecked) {
+                this.$emit('update', this.checkedItems.filter(i => i !== this.value))
+            } else {
+                this.$emit('update', [...this.checkedItems, this.value])
+            }
+        }
+    }
+}
 </script>
 ```
 </details>
