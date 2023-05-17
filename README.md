@@ -22,14 +22,19 @@ npm i vue-proxi
 #### 2. :baby: Child component
    - Import the Proxi Inject mixin: `import { ProxiInject } from 'vue-proxi'`
    - Register the mixin:
-     ```js
-     mixins: [
-     	ProxiInject({
-     		from: key, // from Step 1
-     		props: ['propName', ...] // Becomes available on VM eg. `this.propName`
-     	})
-     ]
-     ```
+
+	```js
+	{
+		// ...,
+
+		mixins: [
+			ProxiInject({
+				from: key, // from Step 1
+				props: ['propName', ...] // Becomes available on VM eg. `this.propName`
+			})
+		]
+	}
+	```
 #### 3. :white_check_mark: Done!
    - The injected data is all available in `this.$$`
      - `this.$$.class`: Class
@@ -64,7 +69,7 @@ Some quick demos to get you started!
         :disabled="childDisabled"
     &gt;
 &lt;/label&gt;
-	</pre><hr><pre lang="js">
+</pre><hr><pre lang="js">
 export default {
   mixins: [
     ProxiInject({
@@ -146,7 +151,7 @@ export default {
         ProxiInject({ from: key })
     ],
 };
-	</pre></td>
+</pre></td>
 		</tr>
 	</table>
 </details>
